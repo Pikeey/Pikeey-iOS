@@ -69,6 +69,7 @@ class QRScannerVC: UIViewController {
         
         return button
     }()
+    lazy var amountOfScans: Int = 0
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -198,7 +199,7 @@ extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
         }
         
         // Get the metadata object
-        let metadataObj = metadataObjects[0] as! AVMetadataMachineReadableCodeObject
+        let metadataObj = metadataObjects.first as! AVMetadataMachineReadableCodeObject
         
         if metadataObj.type == .qr {
             // If the found metadata is equal to the QR code metadata then update the status label's text and set the bounds
@@ -206,11 +207,15 @@ extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
             qrCodeFrameView?.frame = barCodeObject!.bounds
             
             if metadataObj.stringValue != nil {
-                
+                amountOfScans += 1
                 
                 // Once the QR Code is detected this code will run with the stringValue
-                print(metadataObj.stringValue!)
-                
+                if amountOfScans <= 1 {
+                    print(metadataObj.stringValue!)
+                    navigationController?.pushViewController(TabBarController(), animated: true)
+                    
+                    captureSession.stopRunning()
+                }
                 
                 
             }

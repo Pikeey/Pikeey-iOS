@@ -13,6 +13,11 @@
 		E990A2F9283C5756000196CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990A2F8283C5756000196CA /* Assets.xcassets */; };
 		E990A2FC283C5756000196CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990A2FA283C5756000196CA /* LaunchScreen.storyboard */; };
 		E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A328283DE70C000196CA /* QRScannerVC.swift */; };
+		E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A32C283DEDAB000196CA /* HomeVC.swift */; };
+		E990A332283DF378000196CA /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A331283DF378000196CA /* TabBarController.swift */; };
+		E990A336283DF541000196CA /* FoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A335283DF541000196CA /* FoodVC.swift */; };
+		E990A338283DF563000196CA /* DrinksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A337283DF563000196CA /* DrinksVC.swift */; };
+		E990A33B283E69D2000196CA /* BrandStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33A283E69D2000196CA /* BrandStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		E990A2FB283C5756000196CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990A2FD283C5756000196CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E990A328283DE70C000196CA /* QRScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		E990A32C283DEDAB000196CA /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		E990A331283DF378000196CA /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		E990A335283DF541000196CA /* FoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
+		E990A337283DF563000196CA /* DrinksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksVC.swift; sourceTree = "<group>"; };
+		E990A33A283E69D2000196CA /* BrandStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +70,7 @@
 				E990A2EF283C5755000196CA /* AppDelegate.swift */,
 				E990A2F1283C5755000196CA /* SceneDelegate.swift */,
 				E990A326283DE22A000196CA /* Scanner */,
+				E990A330283DF34C000196CA /* Restaurant */,
 				E990A327283DE25D000196CA /* Assets */,
 			);
 			path = Pikeey;
@@ -81,6 +92,50 @@
 				E990A2FA283C5756000196CA /* LaunchScreen.storyboard */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		E990A32B283DED72000196CA /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E990A32C283DEDAB000196CA /* HomeVC.swift */,
+				E990A339283E699B000196CA /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		E990A330283DF34C000196CA /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				E990A331283DF378000196CA /* TabBarController.swift */,
+				E990A32B283DED72000196CA /* Home */,
+				E990A333283DF4E0000196CA /* Food */,
+				E990A334283DF4EC000196CA /* Drinks */,
+			);
+			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		E990A333283DF4E0000196CA /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				E990A335283DF541000196CA /* FoodVC.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		E990A334283DF4EC000196CA /* Drinks */ = {
+			isa = PBXGroup;
+			children = (
+				E990A337283DF563000196CA /* DrinksVC.swift */,
+			);
+			path = Drinks;
+			sourceTree = "<group>";
+		};
+		E990A339283E699B000196CA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E990A33A283E69D2000196CA /* BrandStack.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,9 +209,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
+				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
+				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
 				E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */,
+				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,
 				E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */,
+				E990A33B283E69D2000196CA /* BrandStack.swift in Sources */,
+				E990A336283DF541000196CA /* FoodVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
