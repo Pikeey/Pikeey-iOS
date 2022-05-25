@@ -9,8 +9,7 @@
 /* Begin PBXBuildFile section */
 		E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2EF283C5755000196CA /* AppDelegate.swift */; };
 		E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F1283C5755000196CA /* SceneDelegate.swift */; };
-		E990A2F4283C5755000196CA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F3283C5755000196CA /* ViewController.swift */; };
-		E990A2F7283C5755000196CA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990A2F5283C5755000196CA /* Main.storyboard */; };
+		E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F3283C5755000196CA /* QRCodeVC.swift */; };
 		E990A2F9283C5756000196CA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E990A2F8283C5756000196CA /* Assets.xcassets */; };
 		E990A2FC283C5756000196CA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E990A2FA283C5756000196CA /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -19,8 +18,7 @@
 		E990A2EC283C5755000196CA /* Pikeey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pikeey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990A2EF283C5755000196CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990A2F1283C5755000196CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E990A2F3283C5755000196CA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E990A2F6283C5755000196CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E990A2F3283C5755000196CA /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
 		E990A2F8283C5756000196CA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E990A2FB283C5756000196CA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E990A2FD283C5756000196CA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,15 +54,30 @@
 		E990A2EE283C5755000196CA /* Pikeey */ = {
 			isa = PBXGroup;
 			children = (
+				E990A2FD283C5756000196CA /* Info.plist */,
 				E990A2EF283C5755000196CA /* AppDelegate.swift */,
 				E990A2F1283C5755000196CA /* SceneDelegate.swift */,
-				E990A2F3283C5755000196CA /* ViewController.swift */,
-				E990A2F5283C5755000196CA /* Main.storyboard */,
-				E990A2F8283C5756000196CA /* Assets.xcassets */,
-				E990A2FA283C5756000196CA /* LaunchScreen.storyboard */,
-				E990A2FD283C5756000196CA /* Info.plist */,
+				E990A326283DE22A000196CA /* Scanner */,
+				E990A327283DE25D000196CA /* Assets */,
 			);
 			path = Pikeey;
+			sourceTree = "<group>";
+		};
+		E990A326283DE22A000196CA /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				E990A2F3283C5755000196CA /* QRCodeVC.swift */,
+			);
+			path = Scanner;
+			sourceTree = "<group>";
+		};
+		E990A327283DE25D000196CA /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				E990A2F8283C5756000196CA /* Assets.xcassets */,
+				E990A2FA283C5756000196CA /* LaunchScreen.storyboard */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +140,6 @@
 			files = (
 				E990A2FC283C5756000196CA /* LaunchScreen.storyboard in Resources */,
 				E990A2F9283C5756000196CA /* Assets.xcassets in Resources */,
-				E990A2F7283C5755000196CA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,7 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E990A2F4283C5755000196CA /* ViewController.swift in Sources */,
+				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */,
 			);
@@ -147,14 +159,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		E990A2F5283C5755000196CA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E990A2F6283C5755000196CA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		E990A2FA283C5756000196CA /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +296,6 @@
 				INFOPLIST_FILE = Pikeey/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -320,7 +323,6 @@
 				INFOPLIST_FILE = Pikeey/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
