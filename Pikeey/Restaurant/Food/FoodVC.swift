@@ -95,11 +95,11 @@ extension FoodVC: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return foods.getSectionsFor(category: .starters)
+            return foods.getSectionsFor(category: .startersFood)
         case 1:
-            return foods.getSectionsFor(category: .mains)
+            return foods.getSectionsFor(category: .mainsFood)
         case 2:
-            return foods.getSectionsFor(category: .deserts)
+            return foods.getSectionsFor(category: .desertsFood)
         default:
             return 2
         }
@@ -112,16 +112,16 @@ extension FoodVC: UITableViewDataSource {
         ///  As of right know it only works well if there is only one section by category.
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            if foods.getSectionsFor(category: .starters) == 1 {
-                return foods.getFoodUnder(category: .starters).first?.section.rawValue
+            if foods.getSectionsFor(category: .startersFood) == 1 {
+                return foods.getFoodUnder(category: .startersFood).first?.section?.rawValue
             }
         case 1:
-            if foods.getSectionsFor(category: .mains) == 1 {
-                return foods.getFoodUnder(category: .mains).first?.section.rawValue
+            if foods.getSectionsFor(category: .mainsFood) == 1 {
+                return foods.getFoodUnder(category: .mainsFood).first?.section?.rawValue
             }
         case 2:
-            if foods.getSectionsFor(category: .deserts) == 1 {
-                return foods.getFoodUnder(category: .deserts).first?.section.rawValue
+            if foods.getSectionsFor(category: .desertsFood) == 1 {
+                return foods.getFoodUnder(category: .desertsFood).first?.section?.rawValue
             }
         default:
             return ""
@@ -133,11 +133,11 @@ extension FoodVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return foods.getFoodUnder(category: .starters).count
+            return foods.getFoodUnder(category: .startersFood).count
         case 1:
-            return foods.getFoodUnder(category: .mains).count
+            return foods.getFoodUnder(category: .mainsFood).count
         case 2:
-            return foods.getFoodUnder(category: .deserts).count
+            return foods.getFoodUnder(category: .desertsFood).count
         default:
             return 0
         }
@@ -147,14 +147,14 @@ extension FoodVC: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         var content = UIListContentConfiguration.sidebarSubtitleCell()
         
-        var foodsToDisplay: [Food] = []
+        var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsToDisplay = foods.getFoodUnder(category: .starters)
+            foodsToDisplay = foods.getFoodUnder(category: .startersFood)
         case 1:
-            foodsToDisplay = foods.getFoodUnder(category: .mains)
+            foodsToDisplay = foods.getFoodUnder(category: .mainsFood)
         case 2:
-            foodsToDisplay = foods.getFoodUnder(category: .deserts)
+            foodsToDisplay = foods.getFoodUnder(category: .desertsFood)
         default:
             break
         }
