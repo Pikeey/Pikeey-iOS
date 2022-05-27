@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E94E81B328414218004C40E0 /* BasicInfoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94E81B228414218004C40E0 /* BasicInfoStack.swift */; };
 		E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2EF283C5755000196CA /* AppDelegate.swift */; };
 		E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F1283C5755000196CA /* SceneDelegate.swift */; };
 		E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F3283C5755000196CA /* QRCodeVC.swift */; };
@@ -21,9 +22,11 @@
 		E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33C283E944F000196CA /* RestaurantInfoStack.swift */; };
 		E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33E28407E77000196CA /* RestaurantImageStack.swift */; };
 		E990A3442840915A000196CA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3432840915A000196CA /* Food.swift */; };
+		E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3482840B8C4000196CA /* MealDetailsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E94E81B228414218004C40E0 /* BasicInfoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicInfoStack.swift; sourceTree = "<group>"; };
 		E990A2EC283C5755000196CA /* Pikeey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pikeey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990A2EF283C5755000196CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990A2F1283C5755000196CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		E990A33C283E944F000196CA /* RestaurantInfoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoStack.swift; sourceTree = "<group>"; };
 		E990A33E28407E77000196CA /* RestaurantImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageStack.swift; sourceTree = "<group>"; };
 		E990A3432840915A000196CA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		E990A3482840B8C4000196CA /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +57,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E94E81B1284141E7004C40E0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E94E81B228414218004C40E0 /* BasicInfoStack.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E990A2E3283C5755000196CA = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +129,7 @@
 				E990A32B283DED72000196CA /* Home */,
 				E990A333283DF4E0000196CA /* Food */,
 				E990A334283DF4EC000196CA /* Drinks */,
+				E990A3452840B521000196CA /* MealDetails */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -153,6 +166,15 @@
 				E990A3432840915A000196CA /* Food.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		E990A3452840B521000196CA /* MealDetails */ = {
+			isa = PBXGroup;
+			children = (
+				E990A3482840B8C4000196CA /* MealDetailsVC.swift */,
+				E94E81B1284141E7004C40E0 /* View */,
+			);
+			path = MealDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,11 +250,13 @@
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
 				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
+				E94E81B328414218004C40E0 /* BasicInfoStack.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
 				E990A3442840915A000196CA /* Food.swift in Sources */,
 				E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */,
 				E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */,
+				E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */,
 				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,
 				E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */,
 				E990A33B283E69D2000196CA /* BrandStack.swift in Sources */,
