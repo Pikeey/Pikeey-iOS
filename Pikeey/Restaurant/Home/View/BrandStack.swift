@@ -45,6 +45,7 @@ class BrandStack: UIStackView {
     // MARK: - Methods
     private func setup() {
         // Setting up stack
+        translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         distribution = .fill
         alignment = .fill

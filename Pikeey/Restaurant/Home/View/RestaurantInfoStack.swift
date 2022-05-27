@@ -9,7 +9,7 @@ import UIKit
 
 class RestaurantInfoStack: UIStackView {
 
-    // MARK: Properties
+    // MARK: - Properties
     lazy var restaurantLogoImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,7 @@ class RestaurantInfoStack: UIStackView {
         return label
     }()
     
-    // MARK: Initializers
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -67,7 +67,7 @@ class RestaurantInfoStack: UIStackView {
         self.setup()
     }
     
-    // MARK: Methods
+    // MARK: - Methods
     private func setup() {
         // Setting up stack
         translatesAutoresizingMaskIntoConstraints = false

@@ -19,6 +19,7 @@
 		E990A338283DF563000196CA /* DrinksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A337283DF563000196CA /* DrinksVC.swift */; };
 		E990A33B283E69D2000196CA /* BrandStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33A283E69D2000196CA /* BrandStack.swift */; };
 		E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33C283E944F000196CA /* RestaurantInfoStack.swift */; };
+		E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33E28407E77000196CA /* RestaurantImageStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		E990A337283DF563000196CA /* DrinksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksVC.swift; sourceTree = "<group>"; };
 		E990A33A283E69D2000196CA /* BrandStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStack.swift; sourceTree = "<group>"; };
 		E990A33C283E944F000196CA /* RestaurantInfoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoStack.swift; sourceTree = "<group>"; };
+		E990A33E28407E77000196CA /* RestaurantImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				E990A33A283E69D2000196CA /* BrandStack.swift */,
 				E990A33C283E944F000196CA /* RestaurantInfoStack.swift */,
+				E990A33E28407E77000196CA /* RestaurantImageStack.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			files = (
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
+				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
 				E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */,

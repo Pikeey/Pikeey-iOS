@@ -12,7 +12,6 @@ class HomeVC: UIViewController {
     // MARK: - Properties
     lazy var brandStack: UIStackView = {
         let stack = BrandStack()
-        stack.translatesAutoresizingMaskIntoConstraints = false
         
         return stack
     }()
@@ -22,7 +21,12 @@ class HomeVC: UIViewController {
         let description = "Local kitchen with a delicious twist and farmers support."
         
         let stack = RestaurantInfoStack(image: image, name: name, description: description)
-        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stack
+    }()
+    lazy var restaurantImageVerticalStack: UIStackView = {
+        let description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor"
+        let stack = RestaurantImageStack(image: nil, description: description)
         
         return stack
     }()
@@ -37,6 +41,7 @@ class HomeVC: UIViewController {
         setupNavBar()
         setupBrandStack()
         setupRestaurantInfoStack()
+        setupRestaurantImageStack()
     }
     
     // MARK: - Methods
@@ -72,6 +77,20 @@ class HomeVC: UIViewController {
             restaurantInfoHorizontalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             restaurantInfoHorizontalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             restaurantInfoHorizontalStack.heightAnchor.constraint(equalTo: restaurantInfoHorizontalStack.restaurantDescriptionStack.heightAnchor, constant: 30),
+        ])
+    }
+    
+    private func setupRestaurantImageStack() {
+        // Add to view's hierarchy
+        view.addSubview(restaurantImageVerticalStack)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            // restaurantImageVerticalStack
+            restaurantImageVerticalStack.topAnchor.constraint(equalTo: restaurantInfoHorizontalStack.bottomAnchor,
+                                                              constant: 30),
+            restaurantImageVerticalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            restaurantImageVerticalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
