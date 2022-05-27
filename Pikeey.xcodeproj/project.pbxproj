@@ -20,6 +20,7 @@
 		E990A33B283E69D2000196CA /* BrandStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33A283E69D2000196CA /* BrandStack.swift */; };
 		E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33C283E944F000196CA /* RestaurantInfoStack.swift */; };
 		E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33E28407E77000196CA /* RestaurantImageStack.swift */; };
+		E990A3442840915A000196CA /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3432840915A000196CA /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		E990A33A283E69D2000196CA /* BrandStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStack.swift; sourceTree = "<group>"; };
 		E990A33C283E944F000196CA /* RestaurantInfoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoStack.swift; sourceTree = "<group>"; };
 		E990A33E28407E77000196CA /* RestaurantImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageStack.swift; sourceTree = "<group>"; };
+		E990A3432840915A000196CA /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				E990A2F1283C5755000196CA /* SceneDelegate.swift */,
 				E990A326283DE22A000196CA /* Scanner */,
 				E990A330283DF34C000196CA /* Restaurant */,
+				E990A34228409145000196CA /* Model */,
 				E990A327283DE25D000196CA /* Assets */,
 			);
 			path = Pikeey;
@@ -142,6 +145,14 @@
 				E990A33E28407E77000196CA /* RestaurantImageStack.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E990A34228409145000196CA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E990A3432840915A000196CA /* Food.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +230,7 @@
 				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
+				E990A3442840915A000196CA /* Food.swift in Sources */,
 				E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */,
 				E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */,
 				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,

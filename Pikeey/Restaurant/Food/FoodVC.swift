@@ -13,9 +13,11 @@ class FoodVC: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.insertSegment(withTitle: "Starters", at: 0, animated: true)
-        control.insertSegment(withTitle: "Mains", at: 1, animated: true)
-        control.insertSegment(withTitle: "Deserts", at: 2, animated: true)
+        
+        let handler: (UIAction) -> Void = { [unowned self] _ in self.tableView.reloadData() }
+        control.insertSegment(action: UIAction(title: "Starters", handler: handler), at: 0, animated: true)
+        control.insertSegment(action: UIAction(title: "Mains", handler: handler), at: 1, animated: true)
+        control.insertSegment(action: UIAction(title: "Deserts", handler: handler), at: 2, animated: true)
         control.selectedSegmentIndex = 0
         
         return control
@@ -29,8 +31,7 @@ class FoodVC: UIViewController {
         
         return table
     }()
-    lazy var text: [String] = [String](repeating: "List Item Name", count: 5)
-    lazy var secondaryText: [String] = [String](repeating: "Secondary Text", count: 5)
+    lazy var foods: Foods =  Foods(foods: Foods.getFood())
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -91,15 +92,36 @@ class FoodVC: UIViewController {
 // MARK: - TableView's DataSource
 extension FoodVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return text.count
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            return foods.getStartedFood().count
+        case 1:
+            return foods.getMainsFood().count
+        case 2:
+            return foods.getDesertsFood().count
+        default:
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
         var content = UIListContentConfiguration.sidebarSubtitleCell()
-        content.text = text[indexPath.row]
-        content.secondaryText = secondaryText[indexPath.row]
+        
+        var foodsToDisplay: [Food] = []
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            foodsToDisplay = foods.getStartedFood()
+        case 1:
+            foodsToDisplay = foods.getMainsFood()
+        case 2:
+            foodsToDisplay = foods.getDesertsFood()
+        default:
+            break
+        }
+        
+        content.text =  foodsToDisplay[indexPath.row].name
+        content.secondaryText =  foodsToDisplay[indexPath.row].description
         
         cell.contentConfiguration = content
         
