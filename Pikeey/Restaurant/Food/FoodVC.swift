@@ -23,8 +23,11 @@ class FoodVC: UIViewController {
     
     // MARK: - Methods
     private func setupNavBar() {
-        let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
-        loginButton.setTitleTextAttributes([NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single], for: .normal)
+        let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"),
+                                          style: .plain,
+                                          target: self,
+                                          action: #selector(loginButtonSelected(_:)))
+        loginButton.tintColor = .label
         self.navigationItem.rightBarButtonItem = loginButton
     }
     
