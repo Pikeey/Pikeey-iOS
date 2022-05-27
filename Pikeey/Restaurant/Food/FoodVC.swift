@@ -91,14 +91,53 @@ class FoodVC: UIViewController {
 
 // MARK: - TableView's DataSource
 extension FoodVC: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            return foods.getSectionsFor(category: .starters)
+        case 1:
+            return foods.getSectionsFor(category: .mains)
+        case 2:
+            return foods.getSectionsFor(category: .deserts)
+        default:
+            return 2
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        // NOTE: THIS NEEDS MORE WORK!!!
+        ///  The proble to solve is to know what headers to display depending on what type of foods there are in the category.
+        ///  As of right know it only works well if there is only one section by category.
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            if foods.getSectionsFor(category: .starters) == 1 {
+                return foods.getFoodUnder(category: .starters).first?.section.rawValue
+            }
+        case 1:
+            if foods.getSectionsFor(category: .mains) == 1 {
+                return foods.getFoodUnder(category: .mains).first?.section.rawValue
+            }
+        case 2:
+            if foods.getSectionsFor(category: .deserts) == 1 {
+                return foods.getFoodUnder(category: .deserts).first?.section.rawValue
+            }
+        default:
+            return ""
+        }
+        
+        return ""
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return foods.getStartedFood().count
+            return foods.getFoodUnder(category: .starters).count
         case 1:
-            return foods.getMainsFood().count
+            return foods.getFoodUnder(category: .mains).count
         case 2:
-            return foods.getDesertsFood().count
+            return foods.getFoodUnder(category: .deserts).count
         default:
             return 0
         }
@@ -111,11 +150,11 @@ extension FoodVC: UITableViewDataSource {
         var foodsToDisplay: [Food] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsToDisplay = foods.getStartedFood()
+            foodsToDisplay = foods.getFoodUnder(category: .starters)
         case 1:
-            foodsToDisplay = foods.getMainsFood()
+            foodsToDisplay = foods.getFoodUnder(category: .mains)
         case 2:
-            foodsToDisplay = foods.getDesertsFood()
+            foodsToDisplay = foods.getFoodUnder(category: .deserts)
         default:
             break
         }

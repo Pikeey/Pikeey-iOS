@@ -18,33 +18,68 @@ enum FoodCategory {
     case deserts
 }
 
-enum FoodSection {
-    case pasta
-    case vegetarian
+enum FoodSection: String {
+    case pasta = "Pasta"
+    case vegetarian = "Vegetarian"
 }
 
 struct Foods {
     let foods: [Food]
     
-    func getStartedFood() -> [Food] {
+    // This methods perform the work on self.
+    func getFoodUnder(type: FoodType) -> [Food] {
         return foods.filter { food in
             // If food is of category starters add it to the return array.
-            if food.category == .starters { return true } else { return false }
+            if food.type == type { return true } else { return false }
         }
     }
     
-    func getMainsFood() -> [Food] {
+    func getFoodUnder(category: FoodCategory) -> [Food] {
         return foods.filter { food in
-            // If food is of category mains add it to the return array.
-            if food.category == .mains { return true } else { return false }
+            // If food is of category starters add it to the return array.
+            if food.category == category { return true } else { return false }
         }
     }
     
-    func getDesertsFood() -> [Food] {
+    func getFoodsUnder(section: FoodSection) -> [Food] {
         return foods.filter { food in
-            // If food is of category deserts add it to the return array.
-            if food.category == .deserts { return true } else { return false }
+            if food.section == section { return true } else { return false }
         }
+    }
+    
+    // With this methods you use dependency injection.
+    func getFoodUnder(type: FoodType, foods: [Food]) -> [Food] {
+        return foods.filter { food in
+            // If food is of category starters add it to the return array.
+            if food.type == type { return true } else { return false }
+        }
+    }
+    
+    func getFoodUnder(category: FoodCategory, foods: [Food]) -> [Food] {
+        return foods.filter { food in
+            // If food is of category starters add it to the return array.
+            if food.category == category { return true } else { return false }
+        }
+    }
+    
+    func getFoodsUnder(section: FoodSection, foods: [Food]) -> [Food] {
+        return foods.filter { food in
+            if food.section == section { return true } else { return false }
+        }
+    }
+    
+    func getSectionsFor(category: FoodCategory) -> Int {
+        let foodUnderDesiredCategory = self.getFoodUnder(category: category)
+        
+        let isThereFoodForAPastaSection: Bool = self.getFoodsUnder(section: .pasta, foods: foodUnderDesiredCategory).isEmpty
+        let isThereFoodForAVegetarianSection: Bool = self.getFoodsUnder(section: .vegetarian, foods: foodUnderDesiredCategory).isEmpty
+        
+        var sectionsCount: Int = 0
+        
+        if isThereFoodForAPastaSection { sectionsCount += 1 }
+        if isThereFoodForAVegetarianSection { sectionsCount += 1 }
+        
+        return sectionsCount
     }
     
     // HARDCODED DATA TO TEST
@@ -63,7 +98,7 @@ struct Foods {
     }
     static private func getFoodStarters(amount: Int) -> [Food] {
         let food = Food(name: "List item name: Starters",
-                        description: "Secondary text",
+                        description: "Secondary text: Vegetarian",
                         price: 4.00,
                         type: .food,
                         category: .starters,
@@ -73,7 +108,7 @@ struct Foods {
     }
     static private func getFoodMains(amount: Int) -> [Food] {
         let food = Food(name: "List item name: Mains",
-                        description: "Secondary text",
+                        description: "Secondary text: Pasta",
                         price: 4.00,
                         type: .food,
                         category: .mains,
@@ -83,7 +118,7 @@ struct Foods {
     }
     static private func getFoodDeserts(amount: Int) -> [Food] {
         let food = Food(name: "List item name: Deserts",
-                        description: "Secondary text",
+                        description: "Secondary text: Vegetarian",
                         price: 4.00,
                         type: .food,
                         category: .deserts,
@@ -100,7 +135,4 @@ struct Food {
     let type: FoodType
     let category: FoodCategory
     let section: FoodSection
-    
-    
-    
 }
