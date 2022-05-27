@@ -14,7 +14,7 @@ class BrandStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.text = "Picky"
+        label.text = "momenu"
         label.font = UIFont.systemFont(ofSize: 50)
         label.textAlignment = .center
         

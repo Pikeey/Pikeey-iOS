@@ -23,7 +23,7 @@ class QRCodeVC: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.text = "Picky"
+        label.text = "momenu"
         
         return label
     }()
