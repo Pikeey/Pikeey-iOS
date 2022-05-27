@@ -46,10 +46,6 @@ class FoodVC: UIViewController {
         setupTableView()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     // MARK: - Methods
     private func setupNavBar() {
         let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"),
