@@ -18,6 +18,7 @@
 		E990A336283DF541000196CA /* FoodVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A335283DF541000196CA /* FoodVC.swift */; };
 		E990A338283DF563000196CA /* DrinksVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A337283DF563000196CA /* DrinksVC.swift */; };
 		E990A33B283E69D2000196CA /* BrandStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33A283E69D2000196CA /* BrandStack.swift */; };
+		E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33C283E944F000196CA /* RestaurantInfoStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		E990A335283DF541000196CA /* FoodVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodVC.swift; sourceTree = "<group>"; };
 		E990A337283DF563000196CA /* DrinksVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinksVC.swift; sourceTree = "<group>"; };
 		E990A33A283E69D2000196CA /* BrandStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrandStack.swift; sourceTree = "<group>"; };
+		E990A33C283E944F000196CA /* RestaurantInfoStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				E990A33A283E69D2000196CA /* BrandStack.swift */,
+				E990A33C283E944F000196CA /* RestaurantInfoStack.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
 				E990A329283DE70C000196CA /* QRScannerVC.swift in Sources */,
+				E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */,
 				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,
 				E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */,
 				E990A33B283E69D2000196CA /* BrandStack.swift in Sources */,

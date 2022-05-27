@@ -16,6 +16,16 @@ class HomeVC: UIViewController {
         
         return stack
     }()
+    lazy var restaurantInfoHorizontalStack: RestaurantInfoStack = {
+        let image = UIImage(systemName: "photo.circle")
+        let name = "GoodFood Restaurant"
+        let description = "Local kitchen with a delicious twist and farmers support."
+        
+        let stack = RestaurantInfoStack(image: image, name: name, description: description)
+        stack.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stack
+    }()
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -26,6 +36,7 @@ class HomeVC: UIViewController {
         
         setupNavBar()
         setupBrandStack()
+        setupRestaurantInfoStack()
     }
     
     // MARK: - Methods
@@ -47,6 +58,20 @@ class HomeVC: UIViewController {
             brandStack.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             brandStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
             brandStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
+    private func setupRestaurantInfoStack() {
+        // Add view's hierarchy
+        view.addSubview(restaurantInfoHorizontalStack)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            // restaurantInfoHorizontalStack
+            restaurantInfoHorizontalStack.topAnchor.constraint(equalTo: brandStack.bottomAnchor, constant: 30),
+            restaurantInfoHorizontalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            restaurantInfoHorizontalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            restaurantInfoHorizontalStack.heightAnchor.constraint(equalTo: restaurantInfoHorizontalStack.restaurantDescriptionStack.heightAnchor, constant: 30),
         ])
     }
     
