@@ -132,6 +132,19 @@ extension DrinksVC: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath)
         cell?.setSelected(false, animated: true)
         
-        present(MealDetailsVC(), animated: true)
+        var foodsBeingDisplay: [Meal] = []
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            foodsBeingDisplay = foods.getFoodUnder(category: .coldDrink)
+        case 1:
+            foodsBeingDisplay = foods.getFoodUnder(category: .hotDrink)
+        default:
+            break
+        }
+        
+        let vc = MealDetailsVC()
+        vc.meal = foodsBeingDisplay[indexPath.row]
+        
+        present(vc, animated: true)
     }
 }

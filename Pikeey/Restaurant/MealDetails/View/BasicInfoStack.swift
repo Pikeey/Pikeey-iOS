@@ -23,7 +23,6 @@ class BasicInfoStack: UIStackView {
     lazy var mealNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Grill Cheese Sandwitch"
         label.numberOfLines = 1
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         
@@ -32,8 +31,7 @@ class BasicInfoStack: UIStackView {
     lazy var mealShortDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Secondary Text"
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         
         return label
@@ -41,7 +39,6 @@ class BasicInfoStack: UIStackView {
     lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "$4.00"
         label.numberOfLines = 1
         label.font = UIFont.preferredFont(forTextStyle: .body)
         

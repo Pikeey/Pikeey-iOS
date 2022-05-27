@@ -62,6 +62,27 @@ class MealDetailsVC: UIViewController {
         
         return label
     }()
+    lazy var meal: Meal? = nil {
+        didSet {
+            if let meal = meal {
+                titleLabel.text = meal.name
+                basicInfoHorizontalStack.mealNameLabel.text = meal.name
+                basicInfoHorizontalStack.mealShortDescriptionLabel.text = meal.description
+                basicInfoHorizontalStack.priceLabel.text = "$\(String(format: "%.2f", meal.price))"
+                
+                if meal.section != nil {
+                    let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
+                    let size = systemDynamicFontDescriptor.pointSize
+                    let font = UIFont.systemFont(ofSize: size, weight: .bold)
+                    let attributeText = NSMutableAttributedString(string: "Category: \(meal.section?.rawValue ?? "")")
+                    attributeText.addAttribute(.font, value: font, range: NSRange(location: 0, length: 9))
+                    categoryLabel.attributedText = attributeText
+                } else {
+                    categoryLabel.isHidden = true
+                }
+            }
+        }
+    }
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
