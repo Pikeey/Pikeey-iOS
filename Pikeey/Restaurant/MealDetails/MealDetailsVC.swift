@@ -46,7 +46,22 @@ class MealDetailsVC: UIViewController {
         
         return label
     }()
-    
+    lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 1
+        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        
+        let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
+        let size = systemDynamicFontDescriptor.pointSize
+        let font = UIFont.systemFont(ofSize: size, weight: .bold)
+        
+        let attributeText = NSMutableAttributedString(string: "Category: Vegetarian")
+        attributeText.addAttribute(.font, value: font, range: NSRange(location: 0, length: 9))
+        label.attributedText = attributeText
+        
+        return label
+    }()
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -58,6 +73,7 @@ class MealDetailsVC: UIViewController {
         setupImageView()
         setupBasicInfoHorizontalStack()
         setupLongDescription()
+        setupCategory()
     }
     
     // MARK: - Methods
@@ -113,5 +129,15 @@ class MealDetailsVC: UIViewController {
         ])
     }
     
-    
+    private func setupCategory() {
+        // Add to view's hierarchy
+        view.addSubview(categoryLabel)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            categoryLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            categoryLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            categoryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
 }
