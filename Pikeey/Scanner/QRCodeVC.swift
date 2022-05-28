@@ -49,6 +49,20 @@ class QRCodeVC: UIViewController {
 
         return button
     }()
+    lazy var isUserLoggedIn: Bool = false {
+        didSet {
+            if isUserLoggedIn == true {
+                let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
+                self.navigationItem.setRightBarButton(loginButton, animated: true)
+                navigationItem.rightBarButtonItem?.tintColor = .label
+                
+            } else {
+                let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
+                self.navigationItem.setRightBarButton(loginButton, animated: true)
+                navigationItem.rightBarButtonItem?.tintColor = .label
+            }
+        }
+    }
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -69,8 +83,8 @@ class QRCodeVC: UIViewController {
     // MARK: - Methods
     private func setupNavBar() {
         let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
-        loginButton.setTitleTextAttributes([NSAttributedString.Key.underlineStyle : NSUnderlineStyle.single], for: .normal)
-        self.navigationItem.rightBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem?.tintColor = .label
     }
     
     private func setupBrandLabel() {
@@ -102,7 +116,17 @@ class QRCodeVC: UIViewController {
     }
     
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
-        print("Log In Button Selected.")
+        let alert = UIAlertController(title: "Log In/Out Prompt", message: "Just to have the impression we are loggin or out in select below and action.", preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "\(isUserLoggedIn ? "Log out" : "Log in")", style: .default) { [unowned self] _ in
+            self.isUserLoggedIn.toggle()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(loginAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true)
     }
     
     @objc func scanButtonSelected(_ button: UIButton) {
