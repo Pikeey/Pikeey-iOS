@@ -16,7 +16,7 @@ class HomeVC: UIViewController {
         return stack
     }()
     lazy var restaurantInfoHorizontalStack: RestaurantInfoStack = {
-        let image = UIImage(systemName: "photo.circle")
+        let image = UIImage(systemName: "photo.circle.fill")
         let name = "GoodFood Restaurant"
         let description = "Local kitchen with a delicious twist and farmers support."
         

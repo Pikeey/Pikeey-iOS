@@ -13,7 +13,6 @@ class RestaurantInfoStack: UIStackView {
     lazy var restaurantLogoImage: UIImageView = {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.image = UIImage(systemName: "photo.circle")
         image.tintColor = .label
         image.contentMode = .scaleAspectFit
         
@@ -33,7 +32,6 @@ class RestaurantInfoStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .headline)
-        label.text = "GoodFood Restaurant"
         label.numberOfLines = 1
         
         return label
@@ -42,7 +40,6 @@ class RestaurantInfoStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
-        label.text = "Local kitchen with a delicious twist and farmers support"
         label.numberOfLines = 3
         
         return label
