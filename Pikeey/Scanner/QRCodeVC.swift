@@ -33,6 +33,7 @@ class QRCodeVC: UIViewController {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.backgroundColor = .secondarySystemBackground
+        button.tintColor = .label
         button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
         
         // Title
@@ -74,14 +75,11 @@ class QRCodeVC: UIViewController {
         setupBrandLabel()
         setupScanButton()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        // Make sure the navigationBar is always being display for this VC.
-        self.navigationController?.navigationBar.isHidden = false
-    }
 
     // MARK: - Methods
     private func setupNavBar() {
+        self.navigationController?.navigationBar.isHidden = false
+        
         let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
         navigationItem.rightBarButtonItem = loginButton
         navigationItem.rightBarButtonItem?.tintColor = .label
