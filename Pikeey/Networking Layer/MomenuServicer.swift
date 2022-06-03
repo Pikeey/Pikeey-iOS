@@ -7,23 +7,32 @@
 
 import Foundation
 
-struct MomenuRestaurantRouter: Router {
+enum requestType {
+    case restaurantInfo
+    case restaurantMenu
+}
+
+struct MomenuRoute: Router {
     var scheme: String
     var host: String
     var path: String
     var parameters: [URLQueryItem]
     var method: String
-    
-    init(restaurantID id: String) {
-        self.scheme = "https"
-        self.host = "pikeey-backend.herokuapp.com"
-        self.path = "/restaurant/restaurant/\(id)"
-        self.parameters = []
-        self.method = "GET"
-    }
 }
 
 struct MomenuServicer: Servicer {
-    static var restaurantID: String!
-    let router: Router = MomenuRestaurantRouter(restaurantID: restaurantID)
+    static var restaurantID: String! // After scanning this property is populated
+    var requestType: requestType
+    
+    // Computes the correct router to be used by the request method depending on the requestType.
+    var router: Router {
+        switch requestType {
+        case .restaurantInfo:
+            return MomenuRouterDirector(restaurantID: MomenuServicer.restaurantID).createRouteForRestaurantInfo()
+            
+        case .restaurantMenu:
+            return MomenuRouterDirector(restaurantID: MomenuServicer.restaurantID).createRouteForResturantMenu()
+            
+        }
+    }
 }

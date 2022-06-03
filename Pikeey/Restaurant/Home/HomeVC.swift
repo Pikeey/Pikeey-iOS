@@ -109,7 +109,7 @@ class HomeVC: UIViewController {
     }
     
     private func makeRequest() {
-        MomenuServicer().request(responseType: Restaurant.self) { result in
+        MomenuServicer(requestType: .restaurantMenu).request(responseType: Restaurant.self) { result in
             switch result {
             case .success(let restaurant):
                 self.restaurant = restaurant

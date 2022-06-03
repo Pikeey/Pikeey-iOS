@@ -12,6 +12,7 @@
 		E97861A82847AA99009C3358 /* Servicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861A72847AA99009C3358 /* Servicer.swift */; };
 		E97861AC2847B5DF009C3358 /* MomenuServicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861AB2847B5DF009C3358 /* MomenuServicer.swift */; };
 		E97861AE2847B813009C3358 /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861AD2847B813009C3358 /* Restaurant.swift */; };
+		E97861B22849E4F1009C3358 /* MomenuRouterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861B12849E4F1009C3358 /* MomenuRouterBuilder.swift */; };
 		E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2EF283C5755000196CA /* AppDelegate.swift */; };
 		E990A2F2283C5755000196CA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F1283C5755000196CA /* SceneDelegate.swift */; };
 		E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A2F3283C5755000196CA /* QRCodeVC.swift */; };
@@ -35,6 +36,7 @@
 		E97861A72847AA99009C3358 /* Servicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servicer.swift; sourceTree = "<group>"; };
 		E97861AB2847B5DF009C3358 /* MomenuServicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomenuServicer.swift; sourceTree = "<group>"; };
 		E97861AD2847B813009C3358 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		E97861B12849E4F1009C3358 /* MomenuRouterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomenuRouterBuilder.swift; sourceTree = "<group>"; };
 		E990A2EC283C5755000196CA /* Pikeey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pikeey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990A2EF283C5755000196CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990A2F1283C5755000196CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				E97861A52847AA91009C3358 /* Router.swift */,
 				E97861A72847AA99009C3358 /* Servicer.swift */,
 				E97861AB2847B5DF009C3358 /* MomenuServicer.swift */,
+				E97861B12849E4F1009C3358 /* MomenuRouterBuilder.swift */,
 			);
 			path = "Networking Layer";
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
 				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
+				E97861B22849E4F1009C3358 /* MomenuRouterBuilder.swift in Sources */,
 				E94E81B328414218004C40E0 /* BasicInfoStack.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
 				E990A332283DF378000196CA /* TabBarController.swift in Sources */,
