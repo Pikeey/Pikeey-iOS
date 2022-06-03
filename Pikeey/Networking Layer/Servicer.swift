@@ -9,7 +9,7 @@ import Foundation
 
 protocol Servicer {
     var router: Router { get }
-    func request<ResponseType: Decodable>(responseType: ResponseType.Type, completion: @escaping (Result<ResponseType, Error>) -> Void)
+    func request<ResponseType: Decodable>(responseType: ResponseType.Type, completion: @escaping (Result<ResponseType, ServicerError>) -> Void)
 }
 
 enum ServicerError: Error {
@@ -38,7 +38,7 @@ extension Servicer {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: urlRequest) { data, response, error in
             // Check if an error was return
-            guard error != nil else { DispatchQueue.main.async { completion(.failure(.requestFail)) }; return }
+            guard error == nil else { DispatchQueue.main.async { completion(.failure(.requestFail)) }; return }
             
             // Check if a response was return
             guard response != nil else { DispatchQueue.main.async { completion(.failure(.emptyResponse)) }; return }

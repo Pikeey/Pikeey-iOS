@@ -70,6 +70,7 @@ class QRScannerVC: UIViewController {
         return button
     }()
     lazy var amountOfScans: Int = 0
+    lazy var restaurant: Restaurant? = nil
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -190,6 +191,7 @@ class QRScannerVC: UIViewController {
     }
 }
 
+// MARK: - AVCaptureMetadataDelegate
 extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         // Check if the metadataObjects array is not nil and it contains at least one object

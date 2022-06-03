@@ -16,20 +16,25 @@ class HomeVC: UIViewController {
         return stack
     }()
     lazy var restaurantInfoHorizontalStack: RestaurantInfoStack = {
-        let image = UIImage(systemName: "photo.circle.fill")
-        let name = "GoodFood Restaurant"
-        let description = "Local kitchen with a delicious twist and farmers support."
-        
-        let stack = RestaurantInfoStack(image: image, name: name, description: description)
+        let image: UIImage? = UIImage(systemName: "photo.circle.fill")
+        let stack = RestaurantInfoStack(image: image, name: "", description: "")
         
         return stack
     }()
-    lazy var restaurantImageVerticalStack: UIStackView = {
-        let description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor"
+    lazy var restaurantImageVerticalStack: RestaurantImageStack = {
+        let description = restaurant?.description ?? ""
         let stack = RestaurantImageStack(image: nil, description: description)
         
         return stack
     }()
+    lazy var restaurant: Restaurant? = nil {
+        didSet {
+            self.restaurantInfoHorizontalStack.restaurantNameLabel.text = restaurant?.name
+            self.restaurantInfoHorizontalStack.restaurantDescriptionLabel.text = String(restaurant?.description.split(separator: ".").first ?? "Short description not found.")
+            
+            self.restaurantImageVerticalStack.imageDescriptionLabel.text = restaurant?.description ?? "Description not found."
+        }
+    }
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -42,6 +47,7 @@ class HomeVC: UIViewController {
         setupBrandStack()
         setupRestaurantInfoStack()
         setupRestaurantImageStack()
+        makeRequest()
     }
     
     // MARK: - Methods
@@ -92,6 +98,17 @@ class HomeVC: UIViewController {
             restaurantImageVerticalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             restaurantImageVerticalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    private func makeRequest() {
+        MomenuServicer().request(responseType: Restaurant.self) { result in
+            switch result {
+            case .success(let restaurant):
+                self.restaurant = restaurant
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
