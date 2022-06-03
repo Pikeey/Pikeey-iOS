@@ -32,6 +32,14 @@ class HomeVC: UIViewController {
             self.restaurantInfoHorizontalStack.restaurantNameLabel.text = restaurant?.name
             self.restaurantInfoHorizontalStack.restaurantDescriptionLabel.text = String(restaurant?.description.split(separator: ".").first ?? "Short description not found.")
             
+            // Download image data in the background and update the imageView on the main thread.
+            DispatchQueue.global().async { [unowned self] in
+                if let data = try? Data(contentsOf: restaurant!.image) {
+                    DispatchQueue.main.async {
+                        self.restaurantImageVerticalStack.imageView.image = UIImage(data: data)
+                    }
+                }
+            }
             self.restaurantImageVerticalStack.imageDescriptionLabel.text = restaurant?.description ?? "Description not found."
         }
     }

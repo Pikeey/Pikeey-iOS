@@ -21,7 +21,6 @@ class RestaurantImageStack: UIStackView {
     lazy var imageDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor"
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         label.textAlignment = .left
