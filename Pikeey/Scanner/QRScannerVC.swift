@@ -213,7 +213,10 @@ extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
                 
                 // Once the QR Code is detected this code will run with the stringValue
                 if amountOfScans <= 1 {
-                    print(metadataObj.stringValue!)
+                    
+                    // This is to pass the restaurantID before the request method is called inside HomeVC
+                    MomenuServicer.restaurantID = getRestaurantID(stringValue: metadataObj.stringValue)
+                    
                     navigationController?.pushViewController(TabBarController(), animated: true)
                     
                     captureSession.stopRunning()
@@ -222,5 +225,9 @@ extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
                 
             }
         }
+    }
+    
+    private func getRestaurantID(stringValue: String?) -> String {
+        return String(stringValue?.split(separator: " ").last ?? "")
     }
 }

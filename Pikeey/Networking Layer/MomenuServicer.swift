@@ -7,14 +7,23 @@
 
 import Foundation
 
-struct MomenuRouter: Router {
-    var scheme: String = "https"
-    var host: String = "pikeey-backend.herokuapp.com"
-    var path: String = "/restaurant/restaurant/1"
-    var parameters: [URLQueryItem] = []
-    var method: String = "GET"
+struct MomenuRestaurantRouter: Router {
+    var scheme: String
+    var host: String
+    var path: String
+    var parameters: [URLQueryItem]
+    var method: String
+    
+    init(restaurantID id: String) {
+        self.scheme = "https"
+        self.host = "pikeey-backend.herokuapp.com"
+        self.path = "/restaurant/restaurant/\(id)"
+        self.parameters = []
+        self.method = "GET"
+    }
 }
 
 struct MomenuServicer: Servicer {
-    let router: Router = MomenuRouter()
+    static var restaurantID: String!
+    let router: Router = MomenuRestaurantRouter(restaurantID: restaurantID)
 }
