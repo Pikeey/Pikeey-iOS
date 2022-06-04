@@ -31,8 +31,12 @@ class FoodVC: UIViewController {
         
         return table
     }()
-    lazy var foods: Foods =  Foods(foods: Foods.getFood())
-    
+    var foods: Foods? = nil {
+        didSet {
+            setupTableView()
+        }
+    }
+
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +47,10 @@ class FoodVC: UIViewController {
         
         setupNavBar()
         setupSegmentedControl()
-        setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        requestFoods()
     }
     
     // MARK: - Methods
@@ -84,6 +91,19 @@ class FoodVC: UIViewController {
         ])
     }
     
+    private func requestFoods() {
+        MomenuServicer(requestType: .restaurantMenu).request(responseType: [Meal].self) { [unowned self] result in
+            switch result {
+            case .success(let meals):
+                let foods = Foods(foods: meals)
+                self.foods = foods
+                tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
     }
@@ -93,16 +113,17 @@ class FoodVC: UIViewController {
 extension FoodVC: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            return foods.getSectionsFor(category: .startersFood)
-        case 1:
-            return foods.getSectionsFor(category: .mainsFood)
-        case 2:
-            return foods.getSectionsFor(category: .desertsFood)
-        default:
-            return 2
-        }
+//        switch segmentedControl.selectedSegmentIndex {
+//        case 0:
+//            return foods?.getSectionsFor(category: .starters) ?? 1
+//        case 1:
+//            return (foods?.getSectionsFor(category: .mains)) ?? 1
+//        case 2:
+//            return foods?.getSectionsFor(category: .desserts) ?? 1
+//        default:
+//            return 2
+//        }
+        return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -110,22 +131,22 @@ extension FoodVC: UITableViewDataSource {
         // NOTE: THIS NEEDS MORE WORK!!!
         ///  The proble to solve is to know what headers to display depending on what type of foods there are in the category.
         ///  As of right know it only works well if there is only one section by category.
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            if foods.getSectionsFor(category: .startersFood) == 1 {
-                return foods.getFoodUnder(category: .startersFood).first?.section?.rawValue
-            }
-        case 1:
-            if foods.getSectionsFor(category: .mainsFood) == 1 {
-                return foods.getFoodUnder(category: .mainsFood).first?.section?.rawValue
-            }
-        case 2:
-            if foods.getSectionsFor(category: .desertsFood) == 1 {
-                return foods.getFoodUnder(category: .desertsFood).first?.section?.rawValue
-            }
-        default:
-            return ""
-        }
+//        switch segmentedControl.selectedSegmentIndex {
+//        case 0:
+//            if foods?.getSectionsFor(category: .starters) == 1 {
+//                return foods?.getFoodUnder(category: .starters).first?.section.capitalized
+//            }
+//        case 1:
+//            if foods?.getSectionsFor(category: .mains) == 1 {
+//                return foods?.getFoodUnder(category: .mains).first?.section.capitalized
+//            }
+//        case 2:
+//            if foods?.getSectionsFor(category: .desserts) == 1 {
+//                return foods?.getFoodUnder(category: .desserts).first?.section.capitalized
+//            }
+//        default:
+//            return ""
+//        }
         
         return ""
     }
@@ -133,11 +154,20 @@ extension FoodVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return foods.getFoodUnder(category: .startersFood).count
+            let foods = foods?.getFoodUnder(type: .food)
+            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            
+            return starterFoods.count
         case 1:
-            return foods.getFoodUnder(category: .mainsFood).count
+            let foods = foods?.getFoodUnder(type: .food)
+            let mainFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            
+            return mainFoods.count
         case 2:
-            return foods.getFoodUnder(category: .desertsFood).count
+            let foods = foods?.getFoodUnder(type: .food)
+            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            
+            return dessertFoods.count
         default:
             return 0
         }
@@ -150,11 +180,20 @@ extension FoodVC: UITableViewDataSource {
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsToDisplay = foods.getFoodUnder(category: .startersFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            
+            foodsToDisplay = starterFoods
         case 1:
-            foodsToDisplay = foods.getFoodUnder(category: .mainsFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let mainsFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            
+            foodsToDisplay = mainsFoods
         case 2:
-            foodsToDisplay = foods.getFoodUnder(category: .desertsFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            
+            foodsToDisplay = dessertFoods
         default:
             break
         }
@@ -178,11 +217,20 @@ extension FoodVC: UITableViewDelegate {
         var foodsBeingDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsBeingDisplay = foods.getFoodUnder(category: .startersFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            
+            foodsBeingDisplay = starterFoods
         case 1:
-            foodsBeingDisplay = foods.getFoodUnder(category: .mainsFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let mainFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            
+            foodsBeingDisplay = mainFoods
         case 2:
-            foodsBeingDisplay = foods.getFoodUnder(category: .desertsFood)
+            let foods = foods?.getFoodUnder(type: .food)
+            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            
+            foodsBeingDisplay = dessertFoods
         default:
             break
         }

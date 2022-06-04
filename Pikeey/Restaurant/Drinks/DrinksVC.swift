@@ -30,7 +30,11 @@ class DrinksVC: UIViewController {
         
         return table
     }()
-    lazy var foods: Foods =  Foods(foods: Foods.getDrinks())
+    lazy var foods: Foods? = nil {
+        didSet {
+            setupTableView()
+        }
+    }
     
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
@@ -43,6 +47,10 @@ class DrinksVC: UIViewController {
         setupNavBar()
         setupSegmentedControl()
         setupTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        requestFoods()
     }
     
     // MARK: - Methods
@@ -83,8 +91,32 @@ class DrinksVC: UIViewController {
         ])
     }
     
+    private func requestFoods() {
+        MomenuServicer(requestType: .restaurantMenu).request(responseType: [Meal].self) { [unowned self] result in
+            switch result {
+            case .success(let meals):
+                var foods = Foods(foods: meals)
+                
+                // THIS IS JUST FOR TESTING
+                foods.foods.append(contentsOf: addTwoHardCodedDrinksForTest())
+                
+                self.foods = foods
+                tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
+    }
+    
+    private func addTwoHardCodedDrinksForTest() -> [Meal] {
+        return [
+            Meal(id: 28, name: "Caffe Latter", description: "Hot coffe.", section: "Coffe", type: .drink, category: .hot, ingredients: [], tags: [], price: 3, chefChoice: false, dateCreated: nil, restaurantID: 1),
+            Meal(id: 28, name: "Piña Colada", description: "Best piña and coco beverage you can have.", section: "", type: .drink, category: .cold, ingredients: [], tags: [], price: 4, chefChoice: false, dateCreated: nil, restaurantID: 1)
+        ]
     }
 }
 
@@ -94,9 +126,15 @@ extension DrinksVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            return foods.getFoodUnder(category: .coldDrink).count
+            let drinks = foods?.getFoodUnder(type: .drink)
+            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            
+            return coldDrinks.count
         case 1:
-            return foods.getFoodUnder(category: .hotDrink).count
+            let drinks = foods?.getFoodUnder(type: .drink)
+            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            
+            return hotDrinks.count
         default:
             return 0
         }
@@ -109,9 +147,15 @@ extension DrinksVC: UITableViewDataSource {
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsToDisplay = foods.getFoodUnder(category: .coldDrink)
+            let drinks = foods?.getFoodUnder(type: .drink)
+            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            
+            foodsToDisplay = coldDrinks
         case 1:
-            foodsToDisplay = foods.getFoodUnder(category: .hotDrink)
+            let drinks = foods?.getFoodUnder(type: .drink)
+            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            
+            foodsToDisplay = hotDrinks
         default:
             break
         }
@@ -135,9 +179,15 @@ extension DrinksVC: UITableViewDelegate {
         var foodsBeingDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            foodsBeingDisplay = foods.getFoodUnder(category: .coldDrink)
+            let drinks = foods?.getFoodUnder(type: .drink)
+            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            
+            foodsBeingDisplay = coldDrinks
         case 1:
-            foodsBeingDisplay = foods.getFoodUnder(category: .hotDrink)
+            let drinks = foods?.getFoodUnder(type: .food)
+            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            
+            foodsBeingDisplay = hotDrinks
         default:
             break
         }

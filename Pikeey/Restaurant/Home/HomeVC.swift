@@ -29,6 +29,8 @@ class HomeVC: UIViewController {
     }()
     lazy var restaurant: Restaurant? = nil {
         didSet {
+            //let data = try? Data(contentsOf: URL(string: "https://i.ibb.co/9421HYF/Lovecchio-Logo-big.jpg")!)
+            //self.restaurantInfoHorizontalStack.restaurantLogoImage.image = UIImage(data: data!)
             self.restaurantInfoHorizontalStack.restaurantNameLabel.text = restaurant?.name
             self.restaurantInfoHorizontalStack.restaurantDescriptionLabel.text = String(restaurant?.description.split(separator: ".").first ?? "Short description not found.")
             
