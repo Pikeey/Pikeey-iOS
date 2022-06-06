@@ -28,7 +28,7 @@ struct MomenuRouterDirector {
     
     func createRouteForRestaurantInfo() -> Router {
         var builder = MomenuRouteBuilder()
-        builder.path += "/restaurant/\(restaurantID)"
+        builder.path += "/\(restaurantID)"
         
         return builder.construct()
     }
