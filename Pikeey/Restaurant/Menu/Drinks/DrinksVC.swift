@@ -26,7 +26,7 @@ class DrinksVC: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = self
         table.delegate = self
-        table.rowHeight = 60
+        table.separatorStyle = .none
         
         return table
     }()
@@ -46,7 +46,6 @@ class DrinksVC: UIViewController {
         
         setupNavBar()
         setupSegmentedControl()
-        setupTableView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,7 +79,7 @@ class DrinksVC: UIViewController {
         view.addSubview(tableView)
         
         // Register cells
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(DrinkCell.self, forCellReuseIdentifier: DrinkCell.identifier)
         
         // Add constraints
         NSLayoutConstraint.activate([
@@ -141,8 +140,7 @@ extension DrinksVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var content = UIListContentConfiguration.sidebarSubtitleCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: DrinkCell.identifier, for: indexPath) as! DrinkCell
         
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
@@ -160,10 +158,10 @@ extension DrinksVC: UITableViewDataSource {
             break
         }
         
-        content.text =  foodsToDisplay[indexPath.row].name
-        content.secondaryText =  foodsToDisplay[indexPath.row].description
-        
-        cell.contentConfiguration = content
+        let name = foodsToDisplay[indexPath.row].name
+        let description = foodsToDisplay[indexPath.row].description
+        let price = foodsToDisplay[indexPath.row].price
+        cell.setContent(name: name, description: description, price: price)
         
         return cell
     }
