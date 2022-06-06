@@ -27,7 +27,7 @@ class FoodVC: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.dataSource = self
         table.delegate = self
-        table.rowHeight = 60
+        table.separatorStyle = .none
         
         return table
     }()
@@ -80,7 +80,7 @@ class FoodVC: UIViewController {
         view.addSubview(tableView)
         
         // Register cells
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(FoodCell.self, forCellReuseIdentifier: FoodCell.identifier)
         
         // Add constraints
         NSLayoutConstraint.activate([
@@ -174,8 +174,8 @@ extension FoodVC: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        var content = UIListContentConfiguration.sidebarSubtitleCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: FoodCell.identifier, for: indexPath) as! FoodCell
+        //var content = UIListContentConfiguration.sidebarSubtitleCell()
         
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
@@ -198,10 +198,10 @@ extension FoodVC: UITableViewDataSource {
             break
         }
         
-        content.text =  foodsToDisplay[indexPath.row].name
-        content.secondaryText =  foodsToDisplay[indexPath.row].description
-        
-        cell.contentConfiguration = content
+        let name = foodsToDisplay[indexPath.row].name
+        let description = foodsToDisplay[indexPath.row].description
+        let price = foodsToDisplay[indexPath.row].price
+        cell.setContent(name: name, description: description, price: price)
         
         return cell
     }
