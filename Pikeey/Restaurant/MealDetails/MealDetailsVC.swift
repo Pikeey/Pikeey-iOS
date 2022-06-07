@@ -13,7 +13,6 @@ class MealDetailsVC: UIViewController {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Grill Cheese Sandwitch"
         label.numberOfLines = 1
         label.textAlignment = .center
         
@@ -28,54 +27,60 @@ class MealDetailsVC: UIViewController {
     lazy var imageView: UIImageView = {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
-        image.backgroundColor = .secondarySystemBackground
+        image.contentMode = .scaleAspectFill
+        image.layer.cornerRadius = 5
+        image.clipsToBounds = true
         
         return image
     }()
     lazy var basicInfoHorizontalStack: BasicInfoStack = {
-        let stack = BasicInfoStack(name: "Grill Cheese", description: "Secondary Text", price: 4)
+        let stack = BasicInfoStack()
         
         return stack
     }()
     lazy var longDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus venenatis, lectus magna fringilla urna, porttitor"
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         
         return label
     }()
-    lazy var categoryLabel: UILabel = {
+    lazy var sectionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         
-        let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
-        let size = systemDynamicFontDescriptor.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: .bold)
-        
-        let attributeText = NSMutableAttributedString(string: "Category: Vegetarian")
-        attributeText.addAttribute(.font, value: font, range: NSRange(location: 0, length: 9))
-        label.attributedText = attributeText
-        
         return label
     }()
     lazy var meal: Meal? = nil {
         didSet {
+            // Setting up content
             if let meal = meal {
                 titleLabel.text = meal.name
+                let imageData = try? Data(contentsOf: meal.image)
+                imageView.image = UIImage(data: imageData!)
                 basicInfoHorizontalStack.mealNameLabel.text = meal.name
                 basicInfoHorizontalStack.mealShortDescriptionLabel.text = meal.description
                 basicInfoHorizontalStack.priceLabel.text = "$\(String(format: "%.2f", meal.price))"
                 
-                let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
-                let size = systemDynamicFontDescriptor.pointSize
-                let font = UIFont.systemFont(ofSize: size, weight: .bold)
-                let attributeText = NSMutableAttributedString(string: "Category: \(meal.section)")
-                attributeText.addAttribute(.font, value: font, range: NSRange(location: 0, length: 9))
-                categoryLabel.attributedText = attributeText
+                
+                // Ingredients
+                let systemSubHeadDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .subheadline)
+                let subHeadSize = systemSubHeadDynamicFontDescriptor.pointSize
+                let subHeadFont = UIFont.systemFont(ofSize: subHeadSize, weight: .semibold)
+                let ingredientsAttributeText = NSMutableAttributedString(string: "Ingredients: \(meal.ingredients.joined(separator: ", ")).")
+                ingredientsAttributeText.addAttribute(.font, value: subHeadFont, range: NSRange(location: 0, length: 12))
+                longDescriptionLabel.attributedText = ingredientsAttributeText
+                
+                // Section
+                let systemCaptionDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
+                let captionSize = systemCaptionDynamicFontDescriptor.pointSize
+                let captionFont = UIFont.systemFont(ofSize: captionSize, weight: .bold)
+                let sectionAttributeText = NSMutableAttributedString(string: "Section: \(meal.section)")
+                sectionAttributeText.addAttribute(.font, value: captionFont, range: NSRange(location: 0, length: 9))
+                sectionLabel.attributedText = sectionAttributeText
                 
             }
         }
@@ -149,13 +154,13 @@ class MealDetailsVC: UIViewController {
     
     private func setupCategory() {
         // Add to view's hierarchy
-        view.addSubview(categoryLabel)
+        view.addSubview(sectionLabel)
         
         // Add constraints
         NSLayoutConstraint.activate([
-            categoryLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            categoryLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            categoryLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            sectionLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            sectionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            sectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
 }

@@ -113,8 +113,8 @@ class DrinksVC: UIViewController {
     
     private func addTwoHardCodedDrinksForTest() -> [Meal] {
         return [
-            Meal(id: 28, name: "Caffe Latter", description: "Hot coffe.", section: "Coffe", type: .drink, category: .hot, ingredients: [], tags: [], price: 3, chefChoice: false, dateCreated: nil, restaurantID: 1),
-            Meal(id: 28, name: "Piña Colada", description: "Best piña and coco beverage you can have.", section: "", type: .drink, category: .cold, ingredients: [], tags: [], price: 4, chefChoice: false, dateCreated: nil, restaurantID: 1)
+            Meal(id: 28, name: "Caffe Latter", description: "Hot coffe.", image: URL(string: "https://ingmar.app/blog/wp-content/uploads/2015/05/Nigeria-Jollof-rice.jpg")!, section: "Coffe", type: .drink, category: .hot, ingredients: [], tags: [], price: 3, chefChoice: false, dateCreated: nil, restaurantID: 1),
+            Meal(id: 28, name: "Piña Colada", description: "Best piña and coco beverage you can have.", image: URL(string: "https://ingmar.app/blog/wp-content/uploads/2015/05/Nigeria-Jollof-rice.jpg")!, section: "", type: .drink, category: .cold, ingredients: [], tags: [], price: 4, chefChoice: false, dateCreated: nil, restaurantID: 1)
         ]
     }
 }
@@ -182,7 +182,7 @@ extension DrinksVC: UITableViewDelegate {
             
             foodsBeingDisplay = coldDrinks
         case 1:
-            let drinks = foods?.getFoodUnder(type: .food)
+            let drinks = foods?.getFoodUnder(type: .drink)
             let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
             
             foodsBeingDisplay = hotDrinks

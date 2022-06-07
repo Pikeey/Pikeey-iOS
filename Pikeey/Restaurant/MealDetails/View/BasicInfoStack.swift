@@ -23,7 +23,7 @@ class BasicInfoStack: UIStackView {
     lazy var mealNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
+        label.numberOfLines = 2
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         
         return label
@@ -31,7 +31,7 @@ class BasicInfoStack: UIStackView {
     lazy var mealShortDescriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .caption1)
         
         return label
@@ -40,7 +40,8 @@ class BasicInfoStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.textAlignment = .right
         
         return label
     }()
@@ -48,19 +49,11 @@ class BasicInfoStack: UIStackView {
     // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setup()
     }
     
     required init(coder: NSCoder) {
         super.init(coder: coder)
-    }
-    
-    convenience init(name: String, description: String, price: Double) {
-        self.init()
-        
-        mealNameLabel.text = name
-        mealShortDescriptionLabel.text = description
-        priceLabel.text = "$\(String(format: "%.2f", price))"
-        setup()
     }
     
     // MARK: - Methods

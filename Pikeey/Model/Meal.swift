@@ -117,6 +117,7 @@ struct Meal {
     let id: Int
     let name: String
     let description: String
+    let image: URL
     let section: String
     let type: MealType
     let category: MealCategory
@@ -140,6 +141,7 @@ extension Meal: Decodable {
         case id
         case name
         case description
+        case image
         case section
         case type = "dish_type"
         case category
@@ -159,7 +161,8 @@ extension Meal: Decodable {
         name = try mealContainer.decode(String.self, forKey: .name).capitalized
         var descriptionAsSentence = try mealContainer.decode(String.self, forKey: .description)
         description = descriptionAsSentence.makeSentence()
-        section = try mealContainer.decode(String.self, forKey: .section)
+        image = try mealContainer.decode(URL.self, forKey: .image)
+        section = try mealContainer.decode(String.self, forKey: .section).capitalized
         
         let typeString = try mealContainer.decode(String.self, forKey: .type)
         type = MealType(string: typeString)
