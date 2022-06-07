@@ -38,7 +38,7 @@ class MealDetailsVC: UIViewController {
         
         return stack
     }()
-    lazy var longDescriptionLabel: UILabel = {
+    lazy var ingridientsLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
@@ -72,7 +72,7 @@ class MealDetailsVC: UIViewController {
                 let subHeadFont = UIFont.systemFont(ofSize: subHeadSize, weight: .semibold)
                 let ingredientsAttributeText = NSMutableAttributedString(string: "Ingredients: \(meal.ingredients.joined(separator: ", ")).")
                 ingredientsAttributeText.addAttribute(.font, value: subHeadFont, range: NSRange(location: 0, length: 12))
-                longDescriptionLabel.attributedText = ingredientsAttributeText
+                ingridientsLabel.attributedText = ingredientsAttributeText
                 
                 // Section
                 let systemCaptionDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .caption1)
@@ -86,6 +86,28 @@ class MealDetailsVC: UIViewController {
         }
     }
     
+    // Collection View
+    lazy var sections: [Section] = [
+        TagSection(title: "Test")
+    ]
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = .systemRed
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
+        return collectionView
+    }()
+    lazy var collectionViewLayout: UICollectionViewLayout = {
+        var sections = self.sections
+        let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
+            
+            return sections[sectionIndex].layoutSection()
+        }
+        return layout
+    }()
+    
     // MARK: - VC's LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +117,9 @@ class MealDetailsVC: UIViewController {
         setuptitleLabel()
         setupImageView()
         setupBasicInfoHorizontalStack()
-        setupLongDescription()
+        setupIngredients()
         setupCategory()
+        setupCollectionView()
     }
     
     // MARK: - Methods
@@ -140,16 +163,35 @@ class MealDetailsVC: UIViewController {
         ])
     }
     
-    private func setupLongDescription() {
+    private func setupIngredients() {
         // Add to view's hierarchy
-        view.addSubview(longDescriptionLabel)
+        view.addSubview(ingridientsLabel)
         
         // Add constrains
         NSLayoutConstraint.activate([
-            longDescriptionLabel.topAnchor.constraint(equalTo: basicInfoHorizontalStack.bottomAnchor, constant: 20),
-            longDescriptionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            longDescriptionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ingridientsLabel.topAnchor.constraint(equalTo: basicInfoHorizontalStack.bottomAnchor, constant: 20),
+            ingridientsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            ingridientsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+    
+    private func setupCollectionView() {
+        // View's Hierarchy
+        self.view.addSubview(collectionView)
+        
+        // MARK: Registering
+        collectionView.register(TagCell.self, forCellWithReuseIdentifier: TagCell.identifier)
+        
+        // MARK: Constraints
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: ingridientsLabel.bottomAnchor, constant: 20),
+            collectionView.bottomAnchor.constraint(equalTo: sectionLabel.topAnchor, constant: -20),
+            collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
+            collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+        
+        // MARK: Reload Data
+        collectionView.reloadData()
     }
     
     private func setupCategory() {
@@ -162,5 +204,24 @@ class MealDetailsVC: UIViewController {
             sectionLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             sectionLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
+    }
+}
+
+// MARK: - CollectionView's DataSource and Delegate
+extension MealDetailsVC: UICollectionViewDataSource, UICollectionViewDelegate {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sections[section].numberOfItems
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return sections[indexPath.section].configureCell(collectionView: collectionView, indexPath: indexPath)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }

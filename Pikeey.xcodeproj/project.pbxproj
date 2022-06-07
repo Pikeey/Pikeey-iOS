@@ -11,6 +11,9 @@
 		E953677B284D14FE006FA7D2 /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953677A284D14FE006FA7D2 /* MealCell.swift */; };
 		E953677F284D2258006FA7D2 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953677E284D2258006FA7D2 /* FoodCell.swift */; };
 		E9536782284E2CB8006FA7D2 /* DrinkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9536781284E2CB8006FA7D2 /* DrinkCell.swift */; };
+		E9536787284F9711006FA7D2 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9536786284F9711006FA7D2 /* Section.swift */; };
+		E953678A284F9799006FA7D2 /* TagSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9536789284F9799006FA7D2 /* TagSection.swift */; };
+		E953678C284F97D9006FA7D2 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E953678B284F97D9006FA7D2 /* TagCell.swift */; };
 		E97861A62847AA91009C3358 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861A52847AA91009C3358 /* Router.swift */; };
 		E97861A82847AA99009C3358 /* Servicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861A72847AA99009C3358 /* Servicer.swift */; };
 		E97861AC2847B5DF009C3358 /* MomenuServicer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97861AB2847B5DF009C3358 /* MomenuServicer.swift */; };
@@ -38,6 +41,9 @@
 		E953677A284D14FE006FA7D2 /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
 		E953677E284D2258006FA7D2 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		E9536781284E2CB8006FA7D2 /* DrinkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkCell.swift; sourceTree = "<group>"; };
+		E9536786284F9711006FA7D2 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E9536789284F9799006FA7D2 /* TagSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSection.swift; sourceTree = "<group>"; };
+		E953678B284F97D9006FA7D2 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
 		E97861A52847AA91009C3358 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		E97861A72847AA99009C3358 /* Servicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servicer.swift; sourceTree = "<group>"; };
 		E97861AB2847B5DF009C3358 /* MomenuServicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomenuServicer.swift; sourceTree = "<group>"; };
@@ -76,6 +82,7 @@
 		E94E81B1284141E7004C40E0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E9536783284F96D1006FA7D2 /* CollectionView */,
 				E94E81B228414218004C40E0 /* BasicInfoStack.swift */,
 			);
 			path = View;
@@ -113,6 +120,40 @@
 				E9536781284E2CB8006FA7D2 /* DrinkCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		E9536783284F96D1006FA7D2 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				E9536785284F96EC006FA7D2 /* Cell */,
+				E9536784284F96DE006FA7D2 /* Section */,
+				E9536788284F971A006FA7D2 /* Protocol */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		E9536784284F96DE006FA7D2 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				E9536789284F9799006FA7D2 /* TagSection.swift */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		E9536785284F96EC006FA7D2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				E953678B284F97D9006FA7D2 /* TagCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		E9536788284F971A006FA7D2 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				E9536786284F9711006FA7D2 /* Section.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		E97861A42847AA5A009C3358 /* Networking Layer */ = {
@@ -315,6 +356,7 @@
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
 				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
+				E953678A284F9799006FA7D2 /* TagSection.swift in Sources */,
 				E97861B22849E4F1009C3358 /* MomenuRouterBuilder.swift in Sources */,
 				E94E81B328414218004C40E0 /* BasicInfoStack.swift in Sources */,
 				E990A2F0283C5755000196CA /* AppDelegate.swift in Sources */,
@@ -326,6 +368,8 @@
 				E990A33D283E944F000196CA /* RestaurantInfoStack.swift in Sources */,
 				E97861AC2847B5DF009C3358 /* MomenuServicer.swift in Sources */,
 				E9536782284E2CB8006FA7D2 /* DrinkCell.swift in Sources */,
+				E9536787284F9711006FA7D2 /* Section.swift in Sources */,
+				E953678C284F97D9006FA7D2 /* TagCell.swift in Sources */,
 				E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */,
 				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,
 				E953677F284D2258006FA7D2 /* FoodCell.swift in Sources */,
