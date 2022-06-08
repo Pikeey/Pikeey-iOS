@@ -17,7 +17,7 @@ class QRScannerVC: UIViewController {
     lazy var promptStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.backgroundColor = .secondarySystemBackground
+        stack.backgroundColor = UIColor(named: "basicDarkPurpule")
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.alignment = .center
@@ -34,6 +34,7 @@ class QRScannerVC: UIViewController {
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.text = "Scan the code to see the menu."
         label.numberOfLines = 2
+        label.textColor = UIColor(named: "textColor")
         
         return label
     }()
