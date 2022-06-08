@@ -87,13 +87,13 @@ class MealDetailsVC: UIViewController {
     }
     
     // Collection View
+    lazy var tags = meal!.tags.filter { tag in !tag.isEmpty } // This is to get rid of empty string
     lazy var sections: [Section] = [
-        TagSection(title: "Test")
+        TagSection(tags: tags)
     ]
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.backgroundColor = .systemRed
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -105,6 +105,7 @@ class MealDetailsVC: UIViewController {
             
             return sections[sectionIndex].layoutSection()
         }
+        
         return layout
     }()
     
@@ -118,7 +119,7 @@ class MealDetailsVC: UIViewController {
         setupImageView()
         setupBasicInfoHorizontalStack()
         setupIngredients()
-        setupCategory()
+        setupSection()
         setupCollectionView()
     }
     
@@ -194,7 +195,7 @@ class MealDetailsVC: UIViewController {
         collectionView.reloadData()
     }
     
-    private func setupCategory() {
+    private func setupSection() {
         // Add to view's hierarchy
         view.addSubview(sectionLabel)
         

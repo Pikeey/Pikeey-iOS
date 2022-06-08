@@ -14,11 +14,20 @@ class TagCell: UICollectionViewCell {
     lazy var label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.textAlignment = .center
+        //label.adjustsFontSizeToFitWidth = true
+        
+        label.layer.cornerRadius = 0.30 * min(frame.width, frame.height)
+        label.clipsToBounds = true
+        
+        label.layer.borderColor = UIColor.systemPurple.cgColor
+        label.layer.borderWidth = 1.5
+        
         
         return label
     }()
+    
     
     // MARK: - Initializers
     override init(frame: CGRect) {
@@ -32,20 +41,22 @@ class TagCell: UICollectionViewCell {
     
     // MARK: - Methods
     private func setup() {
+        // Cell Configuration
         
-        // MARK: View's hierarchy
+        // View's hierarchy
         self.addSubview(label)
         
-        // MARK: Constraints
+        // Constraints
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: self.topAnchor),
-            label.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5),
-            label.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 10),
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+            // containter
+            
+            label.widthAnchor.constraint(equalTo: self.widthAnchor),
+            label.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6),
+            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
         ])
     }
     
-    func set(title: String) {
-        label.text = title
+    func set(name: String) {
+        label.text = name
     }
 }
