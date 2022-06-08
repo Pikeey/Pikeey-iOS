@@ -49,7 +49,7 @@
 		E97861AB2847B5DF009C3358 /* MomenuServicer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomenuServicer.swift; sourceTree = "<group>"; };
 		E97861AD2847B813009C3358 /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		E97861B12849E4F1009C3358 /* MomenuRouterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomenuRouterBuilder.swift; sourceTree = "<group>"; };
-		E990A2EC283C5755000196CA /* Pikeey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pikeey.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E990A2EC283C5755000196CA /* momenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = momenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E990A2EF283C5755000196CA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E990A2F1283C5755000196CA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E990A2F3283C5755000196CA /* QRCodeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeVC.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 		E990A2ED283C5755000196CA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E990A2EC283C5755000196CA /* Pikeey.app */,
+				E990A2EC283C5755000196CA /* momenu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -285,9 +285,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E990A2EB283C5755000196CA /* Pikeey */ = {
+		E990A2EB283C5755000196CA /* momenu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E990A300283C5756000196CA /* Build configuration list for PBXNativeTarget "Pikeey" */;
+			buildConfigurationList = E990A300283C5756000196CA /* Build configuration list for PBXNativeTarget "momenu" */;
 			buildPhases = (
 				E990A2E8283C5755000196CA /* Sources */,
 				E990A2E9283C5755000196CA /* Frameworks */,
@@ -297,9 +297,9 @@
 			);
 			dependencies = (
 			);
-			name = Pikeey;
+			name = momenu;
 			productName = Pikeey;
-			productReference = E990A2EC283C5755000196CA /* Pikeey.app */;
+			productReference = E990A2EC283C5755000196CA /* momenu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -317,7 +317,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E990A2E7283C5755000196CA /* Build configuration list for PBXProject "Pikeey" */;
+			buildConfigurationList = E990A2E7283C5755000196CA /* Build configuration list for PBXProject "momenu" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -330,7 +330,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E990A2EB283C5755000196CA /* Pikeey */,
+				E990A2EB283C5755000196CA /* momenu */,
 			);
 		};
 /* End PBXProject section */
@@ -565,7 +565,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E990A2E7283C5755000196CA /* Build configuration list for PBXProject "Pikeey" */ = {
+		E990A2E7283C5755000196CA /* Build configuration list for PBXProject "momenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E990A2FE283C5756000196CA /* Debug */,
@@ -574,7 +574,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E990A300283C5756000196CA /* Build configuration list for PBXNativeTarget "Pikeey" */ = {
+		E990A300283C5756000196CA /* Build configuration list for PBXNativeTarget "momenu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E990A301283C5756000196CA /* Debug */,
