@@ -10,7 +10,6 @@ import UIKit
 class QRCodeVC: UIViewController {
 
     // MARK: - Properties
-    let textColor: UIColor = .white
     lazy var labelStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +23,7 @@ class QRCodeVC: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.text = "momenu."
-        label.textColor = textColor
+        label.textColor = UIColor(named: "textColor")
         
         // This aditional work is to add a specific weight to the font.
         let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .largeTitle)
@@ -40,7 +39,7 @@ class QRCodeVC: UIViewController {
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
         button.backgroundColor = UIColor(named: "basicDarkPurpule")
-        button.tintColor = textColor
+        button.tintColor = UIColor(named: "textColor")
         button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
         
         // Title
@@ -62,12 +61,12 @@ class QRCodeVC: UIViewController {
             if isUserLoggedIn == true {
                 let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
                 self.navigationItem.setRightBarButton(loginButton, animated: true)
-                navigationItem.rightBarButtonItem?.tintColor = textColor
+                navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "textColor")
                 
             } else {
                 let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
                 self.navigationItem.setRightBarButton(loginButton, animated: true)
-                navigationItem.rightBarButtonItem?.tintColor = textColor
+                navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "textColor")
             }
         }
     }
@@ -89,7 +88,7 @@ class QRCodeVC: UIViewController {
         
         let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
         navigationItem.rightBarButtonItem = loginButton
-        navigationItem.rightBarButtonItem?.tintColor = textColor
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(named: "textColor")
     }
     
     private func setupBrandLabel() {
