@@ -14,10 +14,14 @@ class BrandStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
-        label.text = "momenu"
-        label.font = UIFont.systemFont(ofSize: 50)
+        label.text = "momenu."
         label.textAlignment = .center
         
+        // This aditional work is to add a specific weight to the font.
+        let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .largeTitle)
+        let size = systemDynamicFontDescriptor.pointSize
+        let font = UIFont.systemFont(ofSize: size*1.5, weight: .semibold)
+        label.font = font
         
         return label
     }()
