@@ -10,6 +10,7 @@ import UIKit
 class QRCodeVC: UIViewController {
 
     // MARK: - Properties
+    let textColor: UIColor = .white
     lazy var labelStackView: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -22,8 +23,14 @@ class QRCodeVC: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = UIFont.preferredFont(forTextStyle: .largeTitle)
-        label.text = "momenu"
+        label.text = "momenu."
+        label.textColor = textColor
+        
+        // This aditional work is to add a specific weight to the font.
+        let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .largeTitle)
+        let size = systemDynamicFontDescriptor.pointSize
+        let font = UIFont.systemFont(ofSize: size, weight: .semibold)
+        label.font = font
         
         return label
     }()
@@ -32,8 +39,8 @@ class QRCodeVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.backgroundColor = .secondarySystemBackground
-        button.tintColor = .label
+        button.backgroundColor = UIColor(named: "basicDarkPurpule")
+        button.tintColor = textColor
         button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
         
         // Title
@@ -55,12 +62,12 @@ class QRCodeVC: UIViewController {
             if isUserLoggedIn == true {
                 let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"), style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
                 self.navigationItem.setRightBarButton(loginButton, animated: true)
-                navigationItem.rightBarButtonItem?.tintColor = .label
+                navigationItem.rightBarButtonItem?.tintColor = textColor
                 
             } else {
                 let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
                 self.navigationItem.setRightBarButton(loginButton, animated: true)
-                navigationItem.rightBarButtonItem?.tintColor = .label
+                navigationItem.rightBarButtonItem?.tintColor = textColor
             }
         }
     }
@@ -70,7 +77,7 @@ class QRCodeVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "backgroundColor")
         setupNavBar()
         setupBrandLabel()
         setupScanButton()
@@ -82,7 +89,7 @@ class QRCodeVC: UIViewController {
         
         let loginButton = UIBarButtonItem(title: "Log In", style: .plain, target: self, action: #selector(loginButtonSelected(_:)))
         navigationItem.rightBarButtonItem = loginButton
-        navigationItem.rightBarButtonItem?.tintColor = .label
+        navigationItem.rightBarButtonItem?.tintColor = textColor
     }
     
     private func setupBrandLabel() {
@@ -106,8 +113,8 @@ class QRCodeVC: UIViewController {
         // Add constraints
         NSLayoutConstraint.activate([
             scanButton.topAnchor.constraint(equalTo: labelStackView.bottomAnchor, constant: 30),
-            scanButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.2),
-            scanButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7),
+            scanButton.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.3),
+            scanButton.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.8),
             scanButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
         ])
