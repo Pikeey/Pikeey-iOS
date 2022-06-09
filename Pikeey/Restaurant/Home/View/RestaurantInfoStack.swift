@@ -14,7 +14,7 @@ class RestaurantInfoStack: UIStackView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.tintColor = .label
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         
         return image
     }()
@@ -31,8 +31,8 @@ class RestaurantInfoStack: UIStackView {
     lazy var restaurantNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.numberOfLines = 1
+        label.font = .preferredFont(forTextStyle: .title1)
         
         return label
     }()
@@ -72,16 +72,14 @@ class RestaurantInfoStack: UIStackView {
         distribution = .fill
         alignment = .fill
         spacing = 5
-        //layer.borderWidth = 0.5
-        //layer.borderColor = UIColor.systemGray.cgColor
-        layer.cornerRadius = 10
-        backgroundColor = .secondarySystemBackground
+//        layer.cornerRadius = 10
+//        backgroundColor = .secondarySystemBackground
         
         // Add to view's hierarchy
         addArrangedSubview(restaurantLogoImage)
         addArrangedSubview(restaurantDescriptionStack)
         restaurantDescriptionStack.addArrangedSubview(restaurantNameLabel)
-        restaurantDescriptionStack.addArrangedSubview(restaurantDescriptionLabel)
+        //restaurantDescriptionStack.addArrangedSubview(restaurantDescriptionLabel)
         
         // Add Constraints
         NSLayoutConstraint.activate([
@@ -91,6 +89,7 @@ class RestaurantInfoStack: UIStackView {
             
             // restaurantLogo
             restaurantLogoImage.heightAnchor.constraint(equalTo: heightAnchor),
+            restaurantLogoImage.widthAnchor.constraint(equalTo: restaurantLogoImage.heightAnchor)
         ])
     }
 }

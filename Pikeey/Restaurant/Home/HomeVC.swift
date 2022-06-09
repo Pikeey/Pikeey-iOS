@@ -15,9 +15,15 @@ class HomeVC: UIViewController {
         
         return stack
     }()
+    lazy var separatorLineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .label
+        
+        return view
+    }()
     lazy var restaurantInfoHorizontalStack: RestaurantInfoStack = {
-        let image: UIImage? = UIImage(systemName: "photo.circle.fill")
-        let stack = RestaurantInfoStack(image: image, name: "", description: "")
+        let stack = RestaurantInfoStack(image: nil, name: "", description: "")
         
         return stack
     }()
@@ -29,16 +35,20 @@ class HomeVC: UIViewController {
     }()
     lazy var restaurant: Restaurant? = nil {
         didSet {
-            //let data = try? Data(contentsOf: URL(string: "https://i.ibb.co/9421HYF/Lovecchio-Logo-big.jpg")!)
-            //self.restaurantInfoHorizontalStack.restaurantLogoImage.image = UIImage(data: data!)
             self.restaurantInfoHorizontalStack.restaurantNameLabel.text = restaurant?.name
             self.restaurantInfoHorizontalStack.restaurantDescriptionLabel.text = String(restaurant?.description.split(separator: ".").first ?? "Short description not found.")
             
             // Download image data in the background and update the imageView on the main thread.
             DispatchQueue.global().async { [unowned self] in
-                if let data = try? Data(contentsOf: restaurant!.image) {
+                if let logoData = try? Data(contentsOf: restaurant!.logo) {
                     DispatchQueue.main.async {
-                        self.restaurantImageVerticalStack.imageView.image = UIImage(data: data)
+                        self.restaurantInfoHorizontalStack.restaurantLogoImage.image = UIImage(data: logoData)
+                    }
+                }
+                
+                if let imageData = try? Data(contentsOf: restaurant!.image) {
+                    DispatchQueue.main.async {
+                        self.restaurantImageVerticalStack.imageView.image = UIImage(data: imageData)
                     }
                 }
             }
@@ -55,6 +65,7 @@ class HomeVC: UIViewController {
         
         setupNavBar()
         setupBrandStack()
+        setupSeparator()
         setupRestaurantInfoStack()
         setupRestaurantImageStack()
         makeRequest()
@@ -82,6 +93,19 @@ class HomeVC: UIViewController {
         ])
     }
     
+    private func setupSeparator() {
+        // Add to view's hierarchy
+        view.addSubview(separatorLineView)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            separatorLineView.topAnchor.constraint(equalTo: brandStack.bottomAnchor, constant: 30),
+            separatorLineView.heightAnchor.constraint(equalToConstant: 0.2),
+            separatorLineView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.5),
+            separatorLineView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
     private func setupRestaurantInfoStack() {
         // Add view's hierarchy
         view.addSubview(restaurantInfoHorizontalStack)
@@ -89,8 +113,8 @@ class HomeVC: UIViewController {
         // Add constraints
         NSLayoutConstraint.activate([
             // restaurantInfoHorizontalStack
-            restaurantInfoHorizontalStack.topAnchor.constraint(equalTo: brandStack.bottomAnchor, constant: 30),
-            restaurantInfoHorizontalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            restaurantInfoHorizontalStack.topAnchor.constraint(equalTo: separatorLineView.bottomAnchor, constant: 0),
+            restaurantInfoHorizontalStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.65),
             restaurantInfoHorizontalStack.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             restaurantInfoHorizontalStack.heightAnchor.constraint(equalTo: restaurantInfoHorizontalStack.restaurantDescriptionStack.heightAnchor, constant: 30),
         ])

@@ -11,6 +11,7 @@ struct Restaurant {
     let id: Int
     let name: String
     let description: String
+    let logo: URL
     let image: URL
     let headChef: String
     let restaurantType: String
@@ -30,6 +31,7 @@ extension Restaurant: Decodable {
         case id
         case name
         case description
+        case logo
         case image
         case headChef = "head_chef"
         case restaurantType = "restaurant_type"
@@ -44,6 +46,7 @@ extension Restaurant: Decodable {
         id = try restaurantContainer.decode(Int.self, forKey: .id)
         name = try restaurantContainer.decode(String.self, forKey: .name)
         description = try restaurantContainer.decode(String.self, forKey: .description)
+        logo = try restaurantContainer.decode(URL.self, forKey: .logo)
         image = try restaurantContainer.decode(URL.self, forKey: .image)
         headChef = try restaurantContainer.decode(String.self, forKey: .headChef)
         restaurantType = try restaurantContainer.decode(String.self, forKey: .restaurantType)

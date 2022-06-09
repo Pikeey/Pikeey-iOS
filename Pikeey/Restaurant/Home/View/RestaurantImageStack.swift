@@ -15,6 +15,8 @@ class RestaurantImageStack: UIStackView {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = .secondarySystemBackground
+        image.layer.cornerRadius = 10
+        image.layer.masksToBounds = true
         
         return image
     }()

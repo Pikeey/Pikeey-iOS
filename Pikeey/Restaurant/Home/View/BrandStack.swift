@@ -52,7 +52,7 @@ class BrandStack: UIStackView {
         translatesAutoresizingMaskIntoConstraints = false
         axis = .vertical
         distribution = .fill
-        alignment = .fill
+        alignment = .center
         spacing = 10
         
         // Add to view's hierarchy
