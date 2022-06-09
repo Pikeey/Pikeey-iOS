@@ -13,10 +13,11 @@ class DrinksVC: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.selectedSegmentTintColor = .systemPurple
         
         let handler: (UIAction) -> Void = { [unowned self] _ in self.tableView.reloadData() }
-        control.insertSegment(action: UIAction(title: "Cold", handler: handler), at: 0, animated: true)
-        control.insertSegment(action: UIAction(title: "Hot", handler: handler), at: 1, animated: true)
+        control.insertSegment(action: UIAction(title: "Alcoholic", handler: handler), at: 0, animated: true)
+        control.insertSegment(action: UIAction(title: "Non-Alcoholic", handler: handler), at: 1, animated: true)
         control.selectedSegmentIndex = 0
         
         return control
@@ -94,12 +95,7 @@ class DrinksVC: UIViewController {
         MomenuServicer(requestType: .restaurantMenu).request(responseType: [Meal].self) { [unowned self] result in
             switch result {
             case .success(let meals):
-                var foods = Foods(foods: meals)
-                
-                // THIS IS JUST FOR TESTING
-                foods.foods.append(contentsOf: addTwoHardCodedDrinksForTest())
-                
-                self.foods = foods
+                self.foods = Foods(foods: meals)
                 tableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -110,13 +106,6 @@ class DrinksVC: UIViewController {
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
     }
-    
-    private func addTwoHardCodedDrinksForTest() -> [Meal] {
-        return [
-            Meal(id: 28, name: "Caffe Latter", description: "Hot coffe.", image: URL(string: "https://ingmar.app/blog/wp-content/uploads/2015/05/Nigeria-Jollof-rice.jpg")!, section: "Coffe", type: .drink, category: .hot, ingredients: [], tags: [], price: 3, chefChoice: false, dateCreated: nil, restaurantID: 1),
-            Meal(id: 28, name: "Piña Colada", description: "Best piña and coco beverage you can have.", image: URL(string: "https://ingmar.app/blog/wp-content/uploads/2015/05/Nigeria-Jollof-rice.jpg")!, section: "", type: .drink, category: .cold, ingredients: [], tags: [], price: 4, chefChoice: false, dateCreated: nil, restaurantID: 1)
-        ]
-    }
 }
 
 // MARK: - TableView's DataSource
@@ -126,12 +115,12 @@ extension DrinksVC: UITableViewDataSource {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             return coldDrinks.count
         case 1:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             return hotDrinks.count
         default:
@@ -146,12 +135,12 @@ extension DrinksVC: UITableViewDataSource {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             foodsToDisplay = coldDrinks
         case 1:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             foodsToDisplay = hotDrinks
         default:
@@ -178,12 +167,12 @@ extension DrinksVC: UITableViewDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .cold, foods: drinks ?? [])
+            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             foodsBeingDisplay = coldDrinks
         case 1:
             let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .hot, foods: drinks ?? [])
+            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             foodsBeingDisplay = hotDrinks
         default:

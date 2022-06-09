@@ -28,8 +28,8 @@ enum MealCategory {
     case starters
     case mains
     case desserts
-    case cold
-    case hot
+    case alcoholic
+    case nonAlcoholic
     case none
     
     init(string: String) {
@@ -40,10 +40,10 @@ enum MealCategory {
             self = .mains
         case "dessert":
             self = .desserts
-        case "cold":
-            self = .cold
-        case "hot":
-            self = .hot
+        case "alcoholic":
+            self = .alcoholic
+        case "non-alcoholic":
+            self = .nonAlcoholic
         default:
             self = .none
         }
