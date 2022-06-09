@@ -14,7 +14,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.tabBar.tintColor = UIColor(named: "basicDarkPurpule")
+        self.tabBar.tintColor = .systemPurple
         setupViewControllers()
     }
 

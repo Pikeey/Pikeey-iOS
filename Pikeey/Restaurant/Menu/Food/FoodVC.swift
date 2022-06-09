@@ -13,6 +13,7 @@ class FoodVC: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
+        control.selectedSegmentTintColor = .systemPurple
         
         let handler: (UIAction) -> Void = { [unowned self] _ in self.tableView.reloadData() }
         control.insertSegment(action: UIAction(title: "Starters", handler: handler), at: 0, animated: true)

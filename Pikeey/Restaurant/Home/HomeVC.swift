@@ -18,7 +18,7 @@ class HomeVC: UIViewController {
     lazy var separatorLineView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .label
+        view.backgroundColor = .systemPurple
         
         return view
     }()
