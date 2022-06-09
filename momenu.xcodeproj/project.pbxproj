@@ -518,6 +518,7 @@
 				DEVELOPMENT_TEAM = H3T9YTYVBN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = momenu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your permission to be able to scan codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -527,7 +528,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sicaramacuya.Pikeey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sicaramacuya.momenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -545,6 +546,7 @@
 				DEVELOPMENT_TEAM = H3T9YTYVBN;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = momenu/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your permission to be able to scan codes.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -554,7 +556,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sicaramacuya.Pikeey;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sicaramacuya.momenu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
