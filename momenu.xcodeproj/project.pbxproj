@@ -170,7 +170,7 @@
 		E990A2E3283C5755000196CA = {
 			isa = PBXGroup;
 			children = (
-				E990A2EE283C5755000196CA /* Pikeey */,
+				E990A2EE283C5755000196CA /* momenu */,
 				E990A2ED283C5755000196CA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -183,7 +183,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E990A2EE283C5755000196CA /* Pikeey */ = {
+		E990A2EE283C5755000196CA /* momenu */ = {
 			isa = PBXGroup;
 			children = (
 				E990A2FD283C5756000196CA /* Info.plist */,
@@ -195,7 +195,7 @@
 				E990A34228409145000196CA /* Model */,
 				E990A327283DE25D000196CA /* Assets */,
 			);
-			path = Pikeey;
+			path = momenu;
 			sourceTree = "<group>";
 		};
 		E990A326283DE22A000196CA /* Scanner */ = {
@@ -517,7 +517,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H3T9YTYVBN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pikeey/Info.plist;
+				INFOPLIST_FILE = momenu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -544,7 +544,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H3T9YTYVBN;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Pikeey/Info.plist;
+				INFOPLIST_FILE = momenu/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
