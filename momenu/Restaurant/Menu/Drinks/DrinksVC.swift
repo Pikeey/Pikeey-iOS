@@ -13,7 +13,9 @@ class DrinksVC: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.selectedSegmentTintColor = .systemPurple
+        control.selectedSegmentTintColor = .systemIndigo
+        control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "textColor")!],
+                                       for: .selected)
         
         let handler: (UIAction) -> Void = { [unowned self] _ in self.tableView.reloadData() }
         control.insertSegment(action: UIAction(title: "Alcoholic", handler: handler), at: 0, animated: true)
