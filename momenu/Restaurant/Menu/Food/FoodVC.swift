@@ -58,12 +58,18 @@ class FoodVC: UIViewController {
     
     // MARK: - Methods
     private func setupNavBar() {
+        // rightButtonItem
         let loginButton = UIBarButtonItem(image: UIImage(systemName: "person"),
                                           style: .plain,
                                           target: self,
                                           action: #selector(loginButtonSelected(_:)))
         loginButton.tintColor = .label
         self.navigationItem.rightBarButtonItem = loginButton
+        
+        // leftButtonItem
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonSelected(_:)))
+        searchButton.tintColor = .label
+        self.navigationItem.leftBarButtonItem = searchButton
     }
     
     private func setupSegmentedControl() {
@@ -109,6 +115,10 @@ class FoodVC: UIViewController {
     
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
+    }
+    
+    @objc private func searchButtonSelected(_ button: UIBarButtonItem) {
+        print("Search Button Selected.")
     }
 }
 
