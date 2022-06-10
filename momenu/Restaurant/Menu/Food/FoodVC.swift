@@ -10,6 +10,29 @@ import UIKit
 class FoodVC: UIViewController {
     
     // MARK: - Properties
+    lazy var isSearchBarShown: Bool = false
+    lazy var searchButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonSelected(_:)))
+        button.tintColor = .label
+        
+        return button
+    }()
+    lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backButtonSelected(_:)))
+        //let button = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
+        //let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
+        button.tintColor = .label
+        
+        
+        return button
+    }()
+    lazy var searchController: UISearchController = {
+        let search = UISearchController()
+        search.searchBar.delegate = self
+        search.searchBar.placeholder = "Search by tag"
+        
+        return search
+    }()
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
@@ -67,9 +90,9 @@ class FoodVC: UIViewController {
         self.navigationItem.rightBarButtonItem = loginButton
         
         // leftButtonItem
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonSelected(_:)))
-        searchButton.tintColor = .label
         self.navigationItem.leftBarButtonItem = searchButton
+        self.navigationItem.searchController = nil
+        
     }
     
     private func setupSegmentedControl() {
@@ -118,7 +141,23 @@ class FoodVC: UIViewController {
     }
     
     @objc private func searchButtonSelected(_ button: UIBarButtonItem) {
-        print("Search Button Selected.")
+        navigationItem.searchController = searchController
+        self.navigationItem.setLeftBarButton(backButton, animated: true)
+        
+    }
+    
+    @objc private func backButtonSelected(_ button: UIBarButtonItem) {
+        navigationItem.searchController = nil
+        self.navigationItem.setLeftBarButton(searchButton, animated: true)
+    }
+}
+
+// MARK: - SearchBar Delegate
+extension FoodVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let search = searchBar.text else { return }
+        
+        print(search)
     }
 }
 
