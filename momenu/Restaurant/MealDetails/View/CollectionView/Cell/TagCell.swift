@@ -16,12 +16,11 @@ class TagCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textAlignment = .center
-        //label.adjustsFontSizeToFitWidth = true
         
         label.layer.cornerRadius = 0.30 * min(frame.width, frame.height)
         label.clipsToBounds = true
         
-        label.layer.borderColor = UIColor.systemPurple.cgColor
+        label.layer.borderColor = UIColor.systemIndigo.cgColor
         label.layer.borderWidth = 1.5
         
         

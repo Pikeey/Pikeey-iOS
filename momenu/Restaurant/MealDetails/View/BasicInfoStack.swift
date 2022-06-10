@@ -23,8 +23,11 @@ class BasicInfoStack: UIStackView {
     lazy var mealNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.font = UIFont.preferredFont(forTextStyle: .headline)
+        label.numberOfLines = 3
+        
+        let fontDescriptior = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title1)
+        let fontSize = fontDescriptior.pointSize
+        label.font = UIFont.systemFont(ofSize: fontSize, weight: .bold)
         
         return label
     }()
@@ -32,7 +35,7 @@ class BasicInfoStack: UIStackView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = UIFont.preferredFont(forTextStyle: .caption1)
+        label.font = UIFont.preferredFont(forTextStyle: .footnote)
         
         return label
     }()
@@ -64,18 +67,16 @@ class BasicInfoStack: UIStackView {
         distribution = .fill
         alignment = .center
         spacing = 5
-        layer.cornerRadius = 5
         
         // Add to view's hierarchy
         addArrangedSubview(mealBasifInfoVerticalStack)
-        addArrangedSubview(priceLabel)
         mealBasifInfoVerticalStack.addArrangedSubview(mealNameLabel)
         mealBasifInfoVerticalStack.addArrangedSubview(mealShortDescriptionLabel)
         
         // Add Constraints
         NSLayoutConstraint.activate([
             // mealBasifInfoVerticalStack
-            mealBasifInfoVerticalStack.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75),
+            mealBasifInfoVerticalStack.widthAnchor.constraint(equalTo: self.widthAnchor)
         ])
     }
 }

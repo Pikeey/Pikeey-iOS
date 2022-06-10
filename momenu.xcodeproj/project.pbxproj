@@ -34,6 +34,7 @@
 		E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A33E28407E77000196CA /* RestaurantImageStack.swift */; };
 		E990A3442840915A000196CA /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3432840915A000196CA /* Meal.swift */; };
 		E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3482840B8C4000196CA /* MealDetailsVC.swift */; };
+		E9D9B28C2852CE9900B92BCA /* PriceChefChoiceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9B28B2852CE9900B92BCA /* PriceChefChoiceStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		E990A33E28407E77000196CA /* RestaurantImageStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantImageStack.swift; sourceTree = "<group>"; };
 		E990A3432840915A000196CA /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		E990A3482840B8C4000196CA /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
+		E9D9B28B2852CE9900B92BCA /* PriceChefChoiceStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChefChoiceStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			children = (
 				E9536783284F96D1006FA7D2 /* CollectionView */,
 				E94E81B228414218004C40E0 /* BasicInfoStack.swift */,
+				E9D9B28B2852CE9900B92BCA /* PriceChefChoiceStack.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				E97861AC2847B5DF009C3358 /* MomenuServicer.swift in Sources */,
 				E9536782284E2CB8006FA7D2 /* DrinkCell.swift in Sources */,
 				E9536787284F9711006FA7D2 /* Section.swift in Sources */,
+				E9D9B28C2852CE9900B92BCA /* PriceChefChoiceStack.swift in Sources */,
 				E953678C284F97D9006FA7D2 /* TagCell.swift in Sources */,
 				E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */,
 				E990A338283DF563000196CA /* DrinksVC.swift in Sources */,

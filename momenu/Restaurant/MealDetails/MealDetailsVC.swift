@@ -10,28 +10,27 @@ import UIKit
 class MealDetailsVC: UIViewController {
     
     // MARK: - Properties
-    lazy var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 1
-        label.textAlignment = .center
+    lazy var safeAreaTopBackgroundView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .systemBackground
+        view.alpha = 0.15
         
-        // This aditional work is to add a specific weight to the font.
-        let systemDynamicFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .title3)
-        let size = systemDynamicFontDescriptor.pointSize
-        let font = UIFont.systemFont(ofSize: size, weight: .semibold)
-        label.font = font
         
-        return label
+        return view
     }()
     lazy var imageView: UIImageView = {
         let image =  UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 5
         image.clipsToBounds = true
         
         return image
+    }()
+    lazy var priceChefChoiceStack: PriceChefChoiceStack = {
+        let stack = PriceChefChoiceStack()
+        
+        return stack
     }()
     lazy var basicInfoHorizontalStack: BasicInfoStack = {
         let stack = BasicInfoStack()
@@ -58,12 +57,13 @@ class MealDetailsVC: UIViewController {
         didSet {
             // Setting up content
             if let meal = meal {
-                titleLabel.text = meal.name
                 let imageData = try? Data(contentsOf: meal.image)
                 imageView.image = UIImage(data: imageData!)
+                imageView.backgroundColor = .systemGray
                 basicInfoHorizontalStack.mealNameLabel.text = meal.name
                 basicInfoHorizontalStack.mealShortDescriptionLabel.text = meal.description
-                basicInfoHorizontalStack.priceLabel.text = "$\(String(format: "%.2f", meal.price))"
+                priceChefChoiceStack.priceLabel.text = "$\(String(format: "%.2f", meal.price))"
+                priceChefChoiceStack.isChefChoice = meal.chefChoice ?? false
                 
                 
                 // Ingredients
@@ -115,38 +115,40 @@ class MealDetailsVC: UIViewController {
 
         // Do any additional setup after loading the view.
         view.backgroundColor = .systemBackground
-        setuptitleLabel()
         setupImageView()
+        setupSafeAreaTopBackgroundView()
         setupBasicInfoHorizontalStack()
+        setupPriceChefChoiceStack()
         setupIngredients()
         setupSection()
         setupCollectionView()
     }
     
     // MARK: - Methods
-    private func setuptitleLabel() {
-        // Add to view's hierarchy
-        view.addSubview(titleLabel)
-        
-        // Add constrains
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            titleLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-        ])
-    }
     
     private func setupImageView() {
         // Add to view's hierarchy
         view.addSubview(imageView)
         
         // Add constrains
-        let aspectRatio: CGFloat = (3/5)
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
-            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor, multiplier: aspectRatio),
+            imageView.topAnchor.constraint(equalTo: view.topAnchor),
+            imageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            imageView.heightAnchor.constraint(equalTo: imageView.widthAnchor),
             imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
+    }
+    
+    private func setupSafeAreaTopBackgroundView() {
+        // Add to view's hierarchy
+        view.addSubview(safeAreaTopBackgroundView)
+        
+        // Add constrains
+        NSLayoutConstraint.activate([
+            safeAreaTopBackgroundView.topAnchor.constraint(equalTo: view.topAnchor),
+            safeAreaTopBackgroundView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            safeAreaTopBackgroundView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            safeAreaTopBackgroundView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
@@ -164,13 +166,27 @@ class MealDetailsVC: UIViewController {
         ])
     }
     
+    private func setupPriceChefChoiceStack() {
+        // Add to view's hierarchy
+        view.addSubview(priceChefChoiceStack)
+        
+        // Add constraints
+        NSLayoutConstraint.activate([
+            // mealBasicInfoHorizontalStack
+            priceChefChoiceStack.topAnchor.constraint(equalTo: basicInfoHorizontalStack.bottomAnchor, constant: 0),
+            priceChefChoiceStack.heightAnchor.constraint(equalToConstant: 50),
+            priceChefChoiceStack.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            priceChefChoiceStack.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    
     private func setupIngredients() {
         // Add to view's hierarchy
         view.addSubview(ingridientsLabel)
         
         // Add constrains
         NSLayoutConstraint.activate([
-            ingridientsLabel.topAnchor.constraint(equalTo: basicInfoHorizontalStack.bottomAnchor, constant: 20),
+            ingridientsLabel.topAnchor.constraint(equalTo: priceChefChoiceStack.bottomAnchor, constant: 10),
             ingridientsLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             ingridientsLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
@@ -185,7 +201,7 @@ class MealDetailsVC: UIViewController {
         
         // MARK: Constraints
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: ingridientsLabel.bottomAnchor, constant: 20),
+            collectionView.topAnchor.constraint(equalTo: ingridientsLabel.bottomAnchor, constant: 10),
             collectionView.bottomAnchor.constraint(equalTo: sectionLabel.topAnchor, constant: -20),
             collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.9),
             collectionView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
