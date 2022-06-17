@@ -25,6 +25,7 @@ struct MomenuRouteBuilder: RouterBuilder {
 
 struct MomenuRouterDirector {
     let restaurantID: String
+    let tags: [String]?
     
     func createRouteForRestaurantInfo() -> Router {
         var builder = MomenuRouteBuilder()
@@ -38,6 +39,16 @@ struct MomenuRouterDirector {
         builder.path += "/menu"
         builder.parameters = [
             URLQueryItem(name: "restaurant_id", value: restaurantID)
+        ]
+        
+        return builder.construct()
+    }
+    
+    func createRouteForSearchByTag() -> Router {
+        var builder = MomenuRouteBuilder()
+        builder.path += "/menu"
+        builder.parameters = [
+            URLQueryItem(name: "tag", value: tags?.joined(separator: " "))
         ]
         
         return builder.construct()

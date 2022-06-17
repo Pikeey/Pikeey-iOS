@@ -57,59 +57,11 @@ enum FoodSection: String {
 
 struct Foods {
     var foods: [Meal]
+    var searchManager: FoodSearchManager
     
-    // This methods perform the work on self.
-    func getFoodUnder(type: MealType) -> [Meal] {
-        return foods.filter { food in
-            // If food is of category starters add it to the return array.
-            if food.type == type { return true } else { return false }
-        }
-    }
-    
-    func getFoodUnder(category: MealCategory) -> [Meal] {
-        return foods.filter { food in
-            // If food is of category starters add it to the return array.
-            if food.category == category { return true } else { return false }
-        }
-    }
-    
-    func getFoodsUnder(section: String) -> [Meal] {
-        return foods.filter { food in
-            if food.section == section { return true } else { return false }
-        }
-    }
-    
-    // With this methods you use dependency injection.
-    static func getFoodUnder(type: MealType, foods: [Meal]) -> [Meal] {
-        return foods.filter { food in
-            // If food is of category starters add it to the return array.
-            if food.type == type { return true } else { return false }
-        }
-    }
-    
-    static func getFoodUnder(category: MealCategory, foods: [Meal]) -> [Meal] {
-        return foods.filter { food in
-            // If food is of category starters add it to the return array.
-            if food.category == category { return true } else { return false }
-        }
-    }
-    
-    static func getFoodsUnder(section: String, foods: [Meal]) -> [Meal] {
-        return foods.filter { food in
-            if food.section == section { return true } else { return false }
-        }
-    }
-    
-    func getSectionsFor(category: MealCategory) -> Int {
-        let foodUnderDesiredCategory = self.getFoodUnder(category: category)
-        
-        let isThereFoodForAPastaSection: Bool = Foods.getFoodsUnder(section: "biscuits", foods: foodUnderDesiredCategory).isEmpty
-        
-        var sectionsCount: Int = 0
-        
-        if isThereFoodForAPastaSection { sectionsCount += 1 }
-        
-        return sectionsCount
+    init(foods: [Meal]) {
+        self.foods = foods
+        self.searchManager = FoodSearchManager(foods: foods)
     }
 }
 

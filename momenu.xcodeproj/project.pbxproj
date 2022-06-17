@@ -35,6 +35,7 @@
 		E990A3442840915A000196CA /* Meal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3432840915A000196CA /* Meal.swift */; };
 		E990A3492840B8C4000196CA /* MealDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E990A3482840B8C4000196CA /* MealDetailsVC.swift */; };
 		E9D9B28C2852CE9900B92BCA /* PriceChefChoiceStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9B28B2852CE9900B92BCA /* PriceChefChoiceStack.swift */; };
+		E9D9B28E285378C600B92BCA /* FoodSearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D9B28D285378C600B92BCA /* FoodSearchManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		E990A3432840915A000196CA /* Meal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meal.swift; sourceTree = "<group>"; };
 		E990A3482840B8C4000196CA /* MealDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealDetailsVC.swift; sourceTree = "<group>"; };
 		E9D9B28B2852CE9900B92BCA /* PriceChefChoiceStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceChefChoiceStack.swift; sourceTree = "<group>"; };
+		E9D9B28D285378C600B92BCA /* FoodSearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSearchManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +274,7 @@
 			children = (
 				E990A3432840915A000196CA /* Meal.swift */,
 				E97861AD2847B813009C3358 /* Restaurant.swift */,
+				E9D9B28D285378C600B92BCA /* FoodSearchManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				E990A2F4283C5755000196CA /* QRCodeVC.swift in Sources */,
 				E990A32D283DEDAB000196CA /* HomeVC.swift in Sources */,
 				E990A33F28407E77000196CA /* RestaurantImageStack.swift in Sources */,
+				E9D9B28E285378C600B92BCA /* FoodSearchManager.swift in Sources */,
 				E953678A284F9799006FA7D2 /* TagSection.swift in Sources */,
 				E97861B22849E4F1009C3358 /* MomenuRouterBuilder.swift in Sources */,
 				E94E81B328414218004C40E0 /* BasicInfoStack.swift in Sources */,

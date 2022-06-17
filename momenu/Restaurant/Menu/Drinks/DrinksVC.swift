@@ -126,13 +126,13 @@ extension DrinksVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let coldDrinks = FoodSearchManager.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             return coldDrinks.count
         case 1:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let hotDrinks = FoodSearchManager.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             return hotDrinks.count
         default:
@@ -146,13 +146,13 @@ extension DrinksVC: UITableViewDataSource {
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let coldDrinks = FoodSearchManager.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             foodsToDisplay = coldDrinks
         case 1:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let hotDrinks = FoodSearchManager.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             foodsToDisplay = hotDrinks
         default:
@@ -178,13 +178,13 @@ extension DrinksVC: UITableViewDelegate {
         var foodsBeingDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let coldDrinks = Foods.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let coldDrinks = FoodSearchManager.getFoodUnder(category: .alcoholic, foods: drinks ?? [])
             
             foodsBeingDisplay = coldDrinks
         case 1:
-            let drinks = foods?.getFoodUnder(type: .drink)
-            let hotDrinks = Foods.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
+            let drinks = foods?.searchManager.getFoodUnder(type: .drink)
+            let hotDrinks = FoodSearchManager.getFoodUnder(category: .nonAlcoholic, foods: drinks ?? [])
             
             foodsBeingDisplay = hotDrinks
         default:

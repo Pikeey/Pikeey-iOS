@@ -18,9 +18,7 @@ class FoodVC: UIViewController {
         return button
     }()
     lazy var backButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backButtonSelected(_:)))
-        //let button = UIBarButtonItem(image: UIImage(systemName: "chevron.up"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
-        //let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
+        let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
         button.tintColor = .label
         
         
@@ -29,7 +27,7 @@ class FoodVC: UIViewController {
     lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.delegate = self
-        search.searchBar.placeholder = "Search by tag"
+        search.searchBar.placeholder = "Search meal"
         
         return search
     }()
@@ -70,7 +68,6 @@ class FoodVC: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "Food"
         view.backgroundColor = .systemBackground
-        
         setupNavBar()
         setupSegmentedControl()
     }
@@ -136,6 +133,28 @@ class FoodVC: UIViewController {
         }
     }
     
+    private func requestFoodBy(tags: [String]) {
+        MomenuServicer.tags = tags
+        
+        MomenuServicer(requestType: .searchByTag).request(responseType: [Meal].self) { [unowned self] result in
+            switch result {
+            case .success(let meals):
+                let foods = Foods(foods: meals)
+                self.foods = foods
+                tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func searchForMeal(text: String) {
+        guard let meals = foods?.searchManager.searchForFoodsWith(text: text) else { return }
+        
+        self.foods = Foods(foods: meals)
+        tableView.reloadData()
+    }
+    
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
     }
@@ -149,15 +168,24 @@ class FoodVC: UIViewController {
     @objc private func backButtonSelected(_ button: UIBarButtonItem) {
         navigationItem.searchController = nil
         self.navigationItem.setLeftBarButton(searchButton, animated: true)
+        
+        requestFoods()
     }
 }
 
 // MARK: - SearchBar Delegate
 extension FoodVC: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let search = searchBar.text else { return }
+        guard let search = searchBar.text?.lowercased() else { return }
         
-        print(search)
+        searchForMeal(text: search)
+    }
+    
+    // Temporary fix...
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+           requestFoods()
+        }
     }
 }
 
@@ -206,18 +234,18 @@ extension FoodVC: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let foods = foods?.getFoodUnder(type: .food)
-            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let starterFoods = FoodSearchManager.getFoodUnder(category: .starters, foods: foods ?? [])
             
             return starterFoods.count
         case 1:
-            let foods = foods?.getFoodUnder(type: .food)
-            let mainFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let mainFoods = FoodSearchManager.getFoodUnder(category: .mains, foods: foods ?? [])
             
             return mainFoods.count
         case 2:
-            let foods = foods?.getFoodUnder(type: .food)
-            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let dessertFoods = FoodSearchManager.getFoodUnder(category: .desserts, foods: foods ?? [])
             
             return dessertFoods.count
         default:
@@ -231,18 +259,18 @@ extension FoodVC: UITableViewDataSource {
         var foodsToDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let foods = foods?.getFoodUnder(type: .food)
-            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let starterFoods = FoodSearchManager.getFoodUnder(category: .starters, foods: foods ?? [])
             
             foodsToDisplay = starterFoods
         case 1:
-            let foods = foods?.getFoodUnder(type: .food)
-            let mainsFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let mainsFoods = FoodSearchManager.getFoodUnder(category: .mains, foods: foods ?? [])
             
             foodsToDisplay = mainsFoods
         case 2:
-            let foods = foods?.getFoodUnder(type: .food)
-            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let dessertFoods = FoodSearchManager.getFoodUnder(category: .desserts, foods: foods ?? [])
             
             foodsToDisplay = dessertFoods
         default:
@@ -268,18 +296,18 @@ extension FoodVC: UITableViewDelegate {
         var foodsBeingDisplay: [Meal] = []
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let foods = foods?.getFoodUnder(type: .food)
-            let starterFoods = Foods.getFoodUnder(category: .starters, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let starterFoods = FoodSearchManager.getFoodUnder(category: .starters, foods: foods ?? [])
             
             foodsBeingDisplay = starterFoods
         case 1:
-            let foods = foods?.getFoodUnder(type: .food)
-            let mainFoods = Foods.getFoodUnder(category: .mains, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let mainFoods = FoodSearchManager.getFoodUnder(category: .mains, foods: foods ?? [])
             
             foodsBeingDisplay = mainFoods
         case 2:
-            let foods = foods?.getFoodUnder(type: .food)
-            let dessertFoods = Foods.getFoodUnder(category: .desserts, foods: foods ?? [])
+            let foods = foods?.searchManager.getFoodUnder(type: .food)
+            let dessertFoods = FoodSearchManager.getFoodUnder(category: .desserts, foods: foods ?? [])
             
             foodsBeingDisplay = dessertFoods
         default:
