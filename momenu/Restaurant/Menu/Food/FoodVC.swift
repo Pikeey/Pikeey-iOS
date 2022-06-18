@@ -34,7 +34,7 @@ class FoodVC: UIViewController {
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
-        control.selectedSegmentTintColor = .systemIndigo
+        control.selectedSegmentTintColor = UIColor(named: "basicDarkPurpule")
         control.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor(named: "textColor")!],
                                        for: .selected)
         

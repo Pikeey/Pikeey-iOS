@@ -29,7 +29,7 @@ class PriceChefChoiceStack: UIStackView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(systemName: "rosette")
-        image.tintColor = .systemIndigo
+        image.tintColor = UIColor(named: "basicDarkPurpule")
         
         return image
     }()
@@ -44,7 +44,7 @@ class PriceChefChoiceStack: UIStackView {
     lazy var priceContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .systemIndigo
+        view.backgroundColor = UIColor(named: "basicDarkPurpule")
         view.layer.cornerRadius = 10
         view.layer.shadowOffset = CGSize(width: 0, height: 3)
         view.layer.shadowOpacity = 0.3

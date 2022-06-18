@@ -17,7 +17,7 @@ class QRScannerVC: UIViewController {
     lazy var promptStack: UIStackView = {
         let stack = UIStackView()
         stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.backgroundColor = .systemIndigo
+        stack.backgroundColor = UIColor(named: "basicDarkPurpule")
         stack.axis = .horizontal
         stack.distribution = .fill
         stack.alignment = .center

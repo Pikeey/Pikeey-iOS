@@ -38,7 +38,7 @@ class QRCodeVC: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 8
         button.layer.masksToBounds = true
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = UIColor(named: "basicDarkPurpule")
         button.tintColor = UIColor(named: "textColor")
         button.setImage(UIImage(systemName: "qrcode.viewfinder"), for: .normal)
         

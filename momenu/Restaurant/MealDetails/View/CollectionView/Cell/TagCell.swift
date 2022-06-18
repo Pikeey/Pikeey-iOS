@@ -20,7 +20,7 @@ class TagCell: UICollectionViewCell {
         label.layer.cornerRadius = 0.30 * min(frame.width, frame.height)
         label.clipsToBounds = true
         
-        label.layer.borderColor = UIColor.systemIndigo.cgColor
+        label.layer.borderColor = UIColor(named: "basicDarkPurpule")?.cgColor
         label.layer.borderWidth = 1.5
         
         
