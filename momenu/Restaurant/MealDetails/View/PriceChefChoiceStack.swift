@@ -92,6 +92,7 @@ class PriceChefChoiceStack: UIStackView {
         NSLayoutConstraint.activate([
             // priceContainer
             priceContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.30),
+            priceContainer.heightAnchor.constraint(equalTo: priceContainer.widthAnchor, multiplier: 0.30),
             
             // priceLabel
             priceLabel.topAnchor.constraint(equalTo: priceContainer.topAnchor, constant: buffer),
