@@ -31,6 +31,8 @@ struct TagSection: Section {
         
         // section
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 3
         
         return section
     }

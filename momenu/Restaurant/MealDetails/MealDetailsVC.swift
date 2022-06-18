@@ -96,6 +96,7 @@ class MealDetailsVC: UIViewController {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.alwaysBounceVertical = false
         
         return collectionView
     }()
