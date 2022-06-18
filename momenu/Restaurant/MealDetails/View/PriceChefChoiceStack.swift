@@ -36,7 +36,7 @@ class PriceChefChoiceStack: UIStackView {
     lazy var chefChoiceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .footnote)
+        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.text = "Chef's Choice"
         
         return label
@@ -90,12 +90,18 @@ class PriceChefChoiceStack: UIStackView {
         // Add Constraints
         let buffer: CGFloat = 10
         NSLayoutConstraint.activate([
+            // priceContainer
             priceContainer.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.30),
             
+            // priceLabel
             priceLabel.topAnchor.constraint(equalTo: priceContainer.topAnchor, constant: buffer),
             priceLabel.bottomAnchor.constraint(equalTo: priceContainer.bottomAnchor, constant: -buffer),
             priceLabel.leadingAnchor.constraint(equalTo: priceContainer.leadingAnchor, constant: buffer),
-            priceLabel.trailingAnchor.constraint(equalTo: priceContainer.trailingAnchor, constant: -buffer)
+            priceLabel.trailingAnchor.constraint(equalTo: priceContainer.trailingAnchor, constant: -buffer),
+            
+            // chefChoiceImage
+            chefChoiceImage.heightAnchor.constraint(equalTo: priceContainer.heightAnchor, multiplier: 0.9),
+            chefChoiceImage.widthAnchor.constraint(equalTo: chefChoiceImage.heightAnchor)
         ])
     }
     
