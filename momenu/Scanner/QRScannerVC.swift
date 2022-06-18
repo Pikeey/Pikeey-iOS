@@ -219,6 +219,11 @@ extension QRScannerVC: AVCaptureMetadataOutputObjectsDelegate {
                     MomenuServicer.restaurantID = getRestaurantID(stringValue: metadataObj.stringValue)
                     
                     navigationController?.pushViewController(TabBarController(), animated: true)
+                    UIView.animate(withDuration: 0.3, delay: 0) { [unowned self] in
+                        // This is to switch a forced black style that was needed to see the navigationBar content
+                        // on the QRCode and QRScanner VCs.
+                        navigationController?.navigationBar.barStyle = .default
+                    }
                     
                     captureSession.stopRunning()
                 }

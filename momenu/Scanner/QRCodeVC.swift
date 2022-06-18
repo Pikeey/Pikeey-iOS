@@ -81,6 +81,10 @@ class QRCodeVC: UIViewController {
         setupBrandLabel()
         setupScanButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.barStyle = .black
+    }
 
     // MARK: - Methods
     private func setupNavBar() {

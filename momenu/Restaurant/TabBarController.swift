@@ -15,9 +15,10 @@ class TabBarController: UITabBarController {
 
         // Do any additional setup after loading the view.
         self.tabBar.tintColor = .systemIndigo
+        
         setupViewControllers()
     }
-
+    
     // MARK: - Methods
     private func setupViewControllers() {
         let homeVC = HomeVC()
