@@ -10,6 +10,27 @@ import UIKit
 class DrinksVC: UIViewController {
     
     // MARK: - Properties
+    lazy var isSearchBarShown: Bool = false
+    lazy var searchButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonSelected(_:)))
+        button.tintColor = .label
+        
+        return button
+    }()
+    lazy var backButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(backButtonSelected(_:)))
+        button.tintColor = .label
+        
+        
+        return button
+    }()
+    lazy var searchController: UISearchController = {
+        let search = UISearchController()
+        search.searchBar.delegate = self
+        search.searchBar.placeholder = "Search drink"
+        
+        return search
+    }()
     lazy var segmentedControl: UISegmentedControl = {
         let control = UISegmentedControl()
         control.translatesAutoresizingMaskIntoConstraints = false
@@ -46,7 +67,6 @@ class DrinksVC: UIViewController {
         // Do any additional setup after loading the view.
         self.title = "Drinks"
         view.backgroundColor = .systemBackground
-        
         setupNavBar()
         setupSegmentedControl()
     }
@@ -66,9 +86,8 @@ class DrinksVC: UIViewController {
         self.navigationItem.rightBarButtonItem = loginButton
         
         // leftButtonItem
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonSelected(_:)))
-        searchButton.tintColor = .label
         self.navigationItem.leftBarButtonItem = searchButton
+        self.navigationItem.searchController = nil
     }
     
     private func setupSegmentedControl() {
@@ -104,6 +123,7 @@ class DrinksVC: UIViewController {
             switch result {
             case .success(let meals):
                 self.foods = Foods(foods: meals)
+                self.foods = foods
                 tableView.reloadData()
             case .failure(let error):
                 print(error)
@@ -111,12 +131,59 @@ class DrinksVC: UIViewController {
         }
     }
     
+    private func requestFoodBy(tags: [String]) {
+        MomenuServicer.tags = tags
+        
+        MomenuServicer(requestType: .searchByTag).request(responseType: [Meal].self) { [unowned self] result in
+            switch result {
+            case .success(let meals):
+                let foods = Foods(foods: meals)
+                self.foods = foods
+                tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func searchForMeal(text: String) {
+        guard let meals = foods?.searchManager.searchForFoodsWith(text: text) else { return }
+        
+        self.foods = Foods(foods: meals)
+        tableView.reloadData()
+    }
+    
     @objc private func loginButtonSelected(_ button: UIBarButtonItem) {
         print("Log In Button Selected.")
     }
     
     @objc private func searchButtonSelected(_ button: UIBarButtonItem) {
-        print("Search Button Selected.")
+        navigationItem.searchController = searchController
+        self.navigationItem.setLeftBarButton(backButton, animated: true)
+        
+    }
+    
+    @objc private func backButtonSelected(_ button: UIBarButtonItem) {
+        navigationItem.searchController = nil
+        self.navigationItem.setLeftBarButton(searchButton, animated: true)
+        
+        requestFoods()
+    }
+}
+
+// MARK: - SearchBar Delegate
+extension DrinksVC: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let search = searchBar.text?.lowercased() else { return }
+        
+        searchForMeal(text: search)
+    }
+    
+    // Temporary fix...
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty {
+           requestFoods()
+        }
     }
 }
 

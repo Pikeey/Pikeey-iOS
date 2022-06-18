@@ -27,7 +27,7 @@ class FoodVC: UIViewController {
     lazy var searchController: UISearchController = {
         let search = UISearchController()
         search.searchBar.delegate = self
-        search.searchBar.placeholder = "Search meal"
+        search.searchBar.placeholder = "Search food"
         
         return search
     }()
